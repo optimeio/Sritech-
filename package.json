@@ -1,0 +1,16 @@
+{
+    "name": "sritech-engineering",
+    "version": "1.0.0",
+    "description": "Sri Tech Engineering – Production-ready website with React frontend and Node.js backend",
+    "private": true,
+    "scripts": {
+        "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\" --names \"FRONTEND,BACKEND\" --prefix-colors \"cyan,yellow\"",
+        "build": "npm run build --prefix frontend",
+        "start": "npm run start --prefix backend",
+        "install:all": "npm install --prefix frontend && npm install --prefix backend",
+        "setup": "npm run install:all"
+    },
+    "devDependencies": {
+        "concurrently": "^9.0.1"
+    }
+}
