@@ -25,6 +25,6 @@ services:
       - key: ADMIN_PASSWORD
         sync: false
       - key: FRONTEND_URL
-        sync: false   # e.g. https://sritechengineering.in
+        sync: false   # e.g. https://sritechengg.in
       - key: WHATSAPP_NUMBER
         sync: false
