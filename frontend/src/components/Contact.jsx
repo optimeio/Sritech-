@@ -305,10 +305,10 @@ export default function Contact() {
                             <div className="absolute inset-0 blueprint-bg opacity-50" style={{ backgroundSize: '20px 20px' }} aria-hidden="true" />
                             <div className="relative z-10 text-center">
                                 <MapPin size={32} color="rgba(255,107,43,0.6)" className="mx-auto mb-2" aria-hidden="true" />
-                                <p className="font-rajdhani font-semibold text-silver/60 text-sm">Athanoor, Namakkal</p>
-                                <p className="font-source text-silver/40 text-xs">Tamil Nadu, India</p>
+                                <p className="font-rajdhani font-semibold text-silver/60 text-sm">Fairlands, Salem</p>
+                                <p className="font-source text-silver/40 text-xs">Tamil Nadu – 636004</p>
                                 <a
-                                    href="https://maps.google.com/?q=Athanoor,Namakkal,Tamil+Nadu"
+                                    href="https://maps.google.com/?q=OM+Shiva+Towers,Advaitha+Ashram+Road,Fairlands,Salem"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="View location on Google Maps"

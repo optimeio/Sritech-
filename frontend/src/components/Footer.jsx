@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowUp, Facebook, Instagram, Youtube, Mail, MapPin } from 'lucide-react';
+import { ArrowUp, Facebook, Instagram, Mail, MapPin } from 'lucide-react';
 import { COMPANY, GROUP_COMPANIES } from '../data/siteData';
 
 const NAV_COLS = [
@@ -105,9 +105,8 @@ export default function Footer() {
                         {/* Social links */}
                         <div className="flex gap-3">
                             {[
-                                { Icon: Facebook, label: 'Sri Tech Engineering on Facebook', href: 'https://facebook.com' },
-                                { Icon: Instagram, label: 'Sri Tech Engineering on Instagram', href: 'https://instagram.com' },
-                                { Icon: Youtube, label: 'Sri Tech Engineering on YouTube', href: 'https://youtube.com' },
+                                { Icon: Facebook, label: 'Sri Tech Engineering on Facebook', href: COMPANY.social.facebook },
+                                { Icon: Instagram, label: 'Sri Tech Engineering on Instagram', href: COMPANY.social.instagram },
                             ].map(({ Icon, label, href }) => (
                                 <motion.a
                                     key={label}
@@ -115,7 +114,7 @@ export default function Footer() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label={label}
-                                    whileHover={{ scale: 1.15, color: '#ff6b2b' }}
+                                    whileHover={{ scale: 1.15 }}
                                     className="w-9 h-9 rounded-lg border border-silver/15 flex items-center justify-center text-silver/50 hover:border-orange/50 hover:text-orange transition-all duration-200"
                                 >
                                     <Icon size={16} />

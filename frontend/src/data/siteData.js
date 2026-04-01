@@ -2,12 +2,16 @@
 export const COMPANY = {
     name: 'Sri Tech Engineering',
     tagline: 'Beyond Technology',
-    email: 'sritechengineering8@gmail.com',
-    phone: '+91 98765 43210',
-    address: '2/117, Mettukadu, Athanoor, Rasipuram (T.K), Namakkal – 636 301',
+    email: 'thesmgroups@gmail.com',
+    phone: '+91 90433 40278',
+    address: 'IInd Floor, OM Shiva Towers, 259-B, Advaitha Ashram Rd, Fairlands, Salem – 636004',
     units: ['Athanoor Unit', 'Vaiyappamalai Unit'],
     founded: 2020,
     logo: 'https://i.ibb.co/GrLcQ3N/civil.png',
+    social: {
+        facebook: 'https://www.facebook.com/profile.php?id=61584744732515',
+        instagram: 'https://www.instagram.com/thesritech',
+    },
     founder: {
         name: 'Sankarganesh R',
         qual: 'B.E (Mechanical), M.Tech (Energy Technology)',
