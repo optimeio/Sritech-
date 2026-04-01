@@ -86,12 +86,18 @@ export default function Navbar() {
     const scrollTo = (e, href) => {
         e.preventDefault();
         setMobileOpen(false);
+        const sectionId = href.startsWith('#') ? href.slice(1) : href;
+
         if (location.pathname !== '/') {
-            navigate('/' + href);
+            // Navigate cleanly to home, passing the section to scroll to secretly in state
+            navigate('/', { state: { scrollTo: sectionId } });
             return;
         }
+
+        // Already on home, just scroll smoothly
         setTimeout(() => {
-            document.querySelector(href)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            const el = document.getElementById(sectionId);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }, 80);
     };
 
