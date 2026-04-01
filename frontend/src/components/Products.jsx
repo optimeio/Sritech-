@@ -216,10 +216,10 @@ export default function Products() {
     function handleBuyNow(product) {
         const token = localStorage.getItem('sritech_token');
         if (!token) {
-            navigate('/?view=auth&redirect=' + encodeURIComponent('/?view=shop') + '&product=' + product._id);
+            navigate('/auth?redirect=' + encodeURIComponent('/shop') + '&product=' + product._id);
             return;
         }
-        navigate('/?view=shop&product=' + product._id);
+        navigate('/shop?product=' + product._id);
     }
 
     const visibleProducts = products.slice(0, visibleCount);
@@ -349,7 +349,7 @@ export default function Products() {
                                     </button>
                                 )}
                                 <button
-                                    onClick={() => navigate('/?view=shop')}
+                                    onClick={() => navigate('/shop')}
                                     style={{
                                         padding: '12px 28px',
                                         borderRadius: 8,

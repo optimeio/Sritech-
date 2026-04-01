@@ -33,7 +33,8 @@ export default function AuthPage() {
             });
             if (res.error) throw new Error(res.error);
             localStorage.setItem('sritech_token', res.token);
-            navigate(redirect + (productParam ? `?product=${productParam}` : ''));
+            const queryChar = redirect.includes('?') ? '&' : '?';
+            navigate(redirect + (productParam ? `${queryChar}product=${productParam}` : ''));
         } catch (err) {
             setError(err.message);
         } finally {

@@ -49,32 +49,7 @@ function FullPageLoader() {
   );
 }
 
-import { useLocation } from 'react-router-dom';
-
 function MainSite() {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const view = searchParams.get('view');
-
-  if (view === 'auth') {
-    return (
-      <Suspense fallback={<FullPageLoader />}>
-        <CustomCursor />
-        <Navbar />
-        <AuthPage />
-      </Suspense>
-    );
-  }
-
-  if (view === 'shop') {
-    return (
-      <Suspense fallback={<FullPageLoader />}>
-        <CustomCursor />
-        <ShopPage />
-      </Suspense>
-    );
-  }
-
   return (
     <>
       <SEO />
@@ -109,6 +84,19 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<MainSite />} />
+      <Route path="/auth" element={
+        <Suspense fallback={<FullPageLoader />}>
+          <CustomCursor />
+          <Navbar />
+          <AuthPage />
+        </Suspense>
+      } />
+      <Route path="/shop" element={
+        <Suspense fallback={<FullPageLoader />}>
+          <CustomCursor />
+          <ShopPage />
+        </Suspense>
+      } />
       <Route path="/admin" element={<Suspense fallback={<FullPageLoader />}>{isAdmin ? <AdminDashboard /> : <AdminLogin />}</Suspense>} />
       <Route path="*" element={<MainSite />} />
     </Routes>

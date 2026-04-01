@@ -47,7 +47,7 @@ export default function ShopPage() {
 
     const handleBuyClick = (product) => {
         if (!isLoggedIn) {
-            navigate('/?view=auth&redirect=' + encodeURIComponent('/?view=shop') + '&product=' + product._id);
+            navigate('/auth?redirect=' + encodeURIComponent('/shop') + '&product=' + product._id);
             return;
         }
         setCheckoutProduct(product);
@@ -138,7 +138,7 @@ export default function ShopPage() {
                                 <p className="font-rajdhani text-2xl font-bold text-orange tracking-wider">{orderSuccess}</p>
                             </div>
                                 <button
-                                    onClick={() => { setOrderSuccess(null); setAddress(''); setNotes(''); navigate('/?view=shop'); }}
+                                    onClick={() => { setOrderSuccess(null); setAddress(''); setNotes(''); navigate('/shop'); }}
                                     className="w-full sm:w-auto bg-orange text-white font-rajdhani font-bold px-8 py-3.5 rounded-xl uppercase tracking-widest hover:bg-orange/90 transition-all shadow-orange-glow"
                                 >
                                 Continue Shopping
