@@ -52,7 +52,7 @@ const ThumbnailStrip = memo(function ThumbnailStrip({
                 overflowY: 'visible',
                 padding: '6px 4px 8px',   /* vertical padding so glow/border doesn't clip */
                 scrollbarWidth: 'thin',
-                scrollbarColor: '#ff6b2b #1e3a5f',
+                scrollbarColor: '#ef4444 #1a1a1a',
             }}
             role="listbox"
             aria-label="Image thumbnails"
@@ -75,13 +75,13 @@ const ThumbnailStrip = memo(function ThumbnailStrip({
                             overflow: 'hidden',
                             padding: 0,
                             border: isActive
-                                ? '2px solid #ff6b2b'
+                                ? '2px solid #ef4444'
                                 : '2px solid rgba(192,200,216,0.12)',
-                            boxShadow: isActive ? '0 0 10px rgba(255,107,43,0.5)' : 'none',
+                            boxShadow: isActive ? '0 0 10px rgba(239,68,68,0.5)' : 'none',
                             /* NO scale transform — avoids overlapping neighbours */
                             transition: 'border 0.2s ease, box-shadow 0.2s ease',
                             cursor: 'pointer',
-                            background: '#111825',
+                            background: '#111111',
                             outline: 'none',
                         }}
                     >
@@ -115,7 +115,7 @@ function ImageSkeleton() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: 'rgba(30,58,95,0.15)',
+                background: 'rgba(239,68,68,0.05)',
                 borderRadius: 12,
             }}
             aria-hidden="true"
@@ -125,8 +125,8 @@ function ImageSkeleton() {
                     width: 48,
                     height: 48,
                     borderRadius: '50%',
-                    border: '3px solid rgba(255,107,43,0.3)',
-                    borderTopColor: '#ff6b2b',
+                    border: '3px solid rgba(239,68,68,0.3)',
+                    borderTopColor: '#ef4444',
                     animation: 'spin 0.8s linear infinite',
                 }}
             />
@@ -377,8 +377,8 @@ export default function ProjectLightbox({ project, onClose }) {
                                     fontSize: 14,
                                     color: '#c0c8d8',
                                     letterSpacing: '0.05em',
-                                    background: 'rgba(30,58,95,0.4)',
-                                    border: '1px solid rgba(192,200,216,0.15)',
+                                    background: 'rgba(239,68,68,0.1)',
+                                    border: '1px solid rgba(239,68,68,0.15)',
                                     borderRadius: 6,
                                     padding: '3px 10px',
                                 }}
@@ -397,8 +397,8 @@ export default function ProjectLightbox({ project, onClose }) {
                                     width: 40,
                                     height: 40,
                                     borderRadius: '50%',
-                                    background: 'rgba(30,58,95,0.4)',
-                                    border: '1px solid rgba(192,200,216,0.2)',
+                                    background: 'rgba(239,68,68,0.1)',
+                                    border: '1px solid rgba(239,68,68,0.2)',
                                     color: '#f4f6f9',
                                     cursor: 'pointer',
                                     display: 'flex',
@@ -408,13 +408,13 @@ export default function ProjectLightbox({ project, onClose }) {
                                     flexShrink: 0,
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'rgba(255,107,43,0.25)';
-                                    e.currentTarget.style.borderColor = '#ff6b2b';
-                                    e.currentTarget.style.boxShadow = '0 0 16px rgba(255,107,43,0.4)';
+                                    e.currentTarget.style.background = 'rgba(239,68,68,0.25)';
+                                    e.currentTarget.style.borderColor = '#ef4444';
+                                    e.currentTarget.style.boxShadow = '0 0 16px rgba(239,68,68,0.4)';
                                 }}
                                 onMouseLeave={(e) => {
-                                    e.currentTarget.style.background = 'rgba(30,58,95,0.4)';
-                                    e.currentTarget.style.borderColor = 'rgba(192,200,216,0.2)';
+                                    e.currentTarget.style.background = 'rgba(239,68,68,0.1)';
+                                    e.currentTarget.style.borderColor = 'rgba(239,68,68,0.2)';
                                     e.currentTarget.style.boxShadow = 'none';
                                 }}
                             >
@@ -496,9 +496,9 @@ export default function ProjectLightbox({ project, onClose }) {
                                     zIndex: 2,
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'rgba(255,107,43,0.3)';
-                                    e.currentTarget.style.borderColor = '#ff6b2b';
-                                    e.currentTarget.style.boxShadow = '0 0 18px rgba(255,107,43,0.5)';
+                                    e.currentTarget.style.background = 'rgba(34,197,94,0.3)';
+                                    e.currentTarget.style.borderColor = '#22c55e';
+                                    e.currentTarget.style.boxShadow = '0 0 18px rgba(34,197,94,0.5)';
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.background = 'rgba(15,17,23,0.75)';
@@ -537,9 +537,9 @@ export default function ProjectLightbox({ project, onClose }) {
                                     zIndex: 2,
                                 }}
                                 onMouseEnter={(e) => {
-                                    e.currentTarget.style.background = 'rgba(255,107,43,0.3)';
-                                    e.currentTarget.style.borderColor = '#ff6b2b';
-                                    e.currentTarget.style.boxShadow = '0 0 18px rgba(255,107,43,0.5)';
+                                    e.currentTarget.style.background = 'rgba(34,197,94,0.3)';
+                                    e.currentTarget.style.borderColor = '#22c55e';
+                                    e.currentTarget.style.boxShadow = '0 0 18px rgba(34,197,94,0.5)';
                                 }}
                                 onMouseLeave={(e) => {
                                     e.currentTarget.style.background = 'rgba(15,17,23,0.75)';
@@ -572,8 +572,8 @@ export default function ProjectLightbox({ project, onClose }) {
                                 fontFamily: 'Source Sans 3, sans-serif',
                             }}
                         >
-                            <Camera size={14} color="#ff6b2b" />
-                            <span style={{ color: '#ff6b2b', fontWeight: 600 }}>Client:</span>
+                            <Camera size={14} color="#22c55e" />
+                            <span style={{ color: '#ef4444', fontWeight: 600 }}>Client:</span>
                             {project.client}
                         </div>
                         <div
@@ -591,7 +591,7 @@ export default function ProjectLightbox({ project, onClose }) {
                                 fontFamily: 'Source Sans 3, sans-serif',
                             }}
                         >
-                            <span style={{ color: '#ff6b2b', fontWeight: 600 }}>Year: </span>
+                            <span style={{ color: '#ef4444', fontWeight: 600 }}>Year: </span>
                             {project.year}
                         </div>
                         <div

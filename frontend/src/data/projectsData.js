@@ -23,7 +23,7 @@ export const GALLERY_PROJECTS = [
             'Hoarding board installation on national highways for Smart City project, Madurai. LED display boards and large-format signages mounted along NH corridors for smart traffic and city information systems.',
         client: 'JMC Pvt. Ltd.',
         year: '2021',
-        color: '#8b5cf6',
+        color: '#ff8c5a',
         images: [
             { src: '/projects/smartcity-1.jpg', alt: 'Smart City hoarding board installation on national highway Madurai – Sri Tech Engineering' },
             { src: '/projects/smartcity-2.jpg', alt: 'LED display board mounted on NH highway pole Smart City Madurai project' },
@@ -55,7 +55,7 @@ export const GALLERY_PROJECTS = [
             'Designed and erected the inaugural Pre-Engineered Building (PEB) structure in SIDCO Industrial Estate, setting the benchmark for future industrial constructions in the estate.',
         client: 'SIDCO Industrial Estate',
         year: '2021',
-        color: '#10b981',
+        color: '#d44010',
         images: [
             { src: '/projects/sidco-1.jpg', alt: 'SIDCO PEB structure steel frame erection in progress at industrial estate Namakkal' },
             { src: '/projects/sidco-2.jpg', alt: 'Pre-engineered building roofing work at SIDCO Industrial Estate Namakkal' },
@@ -73,7 +73,7 @@ export const GALLERY_PROJECTS = [
             'Manufacturing of heavy-duty push trolley steel wheels and ladder assemblies for Indian Railways maintenance operations. Precision-machined to railway specifications for durability and safety.',
         client: 'Indian Railways (Sub-contract)',
         year: '2021',
-        color: '#3b82f6',
+        color: '#e55020',
         images: [
             { src: '/projects/railway-1.jpg', alt: 'Push trolley steel wheel machining on lathe machine Sri Tech Engineering Namakkal' },
             { src: '/projects/railway-2.jpg', alt: 'Completed batch of railway steel wheels quality inspection Sri Tech Engineering' },
@@ -89,7 +89,7 @@ export const GALLERY_PROJECTS = [
             'Complete Virgin Coconut Oil (VCO) processing plant machinery and industrial curd churning machine fabricated with stainless steel food-grade construction for hygienic processing.',
         client: 'Food Processing Clients',
         year: '2022',
-        color: '#14b8a6',
+        color: '#ff9a6a',
         images: [
             { src: '/projects/food-1.jpg', alt: 'VCO virgin coconut oil processing machine fabricated by Sri Tech Engineering Namakkal' },
             { src: '/projects/food-2.jpg', alt: 'Stainless steel food grade VCO plant components Sri Tech Engineering' },
@@ -118,7 +118,7 @@ export const GALLERY_PROJECTS = [
             'Series of rapid-prototyped industrial components using FDM and SLA 3D printing with full reverse engineering workflows. CAD models in SolidWorks, CATIA, and CREO for accurate fitment.',
         client: 'Various Clients',
         year: '2023',
-        color: '#6366f1',
+        color: '#bc3908',
         images: [
             { src: '/projects/3dprint-1.jpg', alt: '3D printed industrial prototype component FDM printer Sri Tech Engineering Namakkal' },
             { src: '/projects/3dprint-2.jpg', alt: 'SLA 3D printed high detail prototype reverse engineering project Sri Tech' },
@@ -133,7 +133,7 @@ export const GALLERY_PROJECTS = [
             'Complete electric two-wheeler and three-wheeler prototype development — frame design, motor integration, battery management system, and performance testing for EV startup clients.',
         client: 'EV Startup Clients',
         year: '2024',
-        color: '#22c55e',
+        color: '#ff6b2b',
         images: [
             { src: '/projects/ev-1.jpg', alt: 'Electric two-wheeler prototype frame design fabrication Sri Tech Engineering Namakkal' },
             { src: '/projects/ev-2.jpg', alt: 'EV motor integration battery pack mounting two-wheeler chassis Sri Tech' },
@@ -149,7 +149,7 @@ export const GALLERY_PROJECTS = [
             'Innovative parabolic solar water heater integrated with a thermoelectric generator (TEG) for dual energy harvesting — simultaneous hot water production and electricity generation from solar energy.',
         client: 'Research Project',
         year: '2023',
-        color: '#ef4444',
+        color: '#e55020',
         images: [
             { src: '/projects/solar-1.jpg', alt: 'Parabolic solar water heater TEG module installed outdoors Sri Tech Engineering research' },
             { src: '/projects/solar-2.jpg', alt: 'Thermoelectric generator TEG module parabolic collector focus point research Sri Tech' },
@@ -159,18 +159,18 @@ export const GALLERY_PROJECTS = [
 ];
 
 export const CATEGORY_COLOR_MAP = {
-    'Smart City': '#8b5cf6',
-    'Oil & Gas': '#f59e0b',
-    PEB: '#10b981',
-    Railway: '#3b82f6',
-    'Food Processing': '#14b8a6',
+    'Smart City': '#ff8c5a',
+    'Oil & Gas': '#ff6b2b',
+    PEB: '#d44010',
+    Railway: '#e55020',
+    'Food Processing': '#ff9a6a',
     SPM: '#f97316',
-    '3D Printing': '#6366f1',
-    'EV Design': '#22c55e',
-    Energy: '#ef4444',
-    IOCL: '#f59e0b',
-    SIDCO: '#10b981',
-    'Food Machines': '#14b8a6',
-    EV: '#22c55e',
+    '3D Printing': '#bc3908',
+    'EV Design': '#ff6b2b',
+    Energy: '#e55020',
+    IOCL: '#ff6b2b',
+    SIDCO: '#d44010',
+    'Food Machines': '#ff9a6a',
+    EV: '#ff6b2b',
     All: '#ff6b2b',
 };

@@ -9,12 +9,12 @@ export default {
       colors: {
         charcoal: '#0f1117',
         steel: '#1e3a5f',
-        orange: '#ff6b2b',
+        red: '#ef4444',
+        green: '#22c55e',
         silver: '#c0c8d8',
         offwhite: '#f4f6f9',
-        'steel-dark': '#12253f',
-        'orange-light': '#ff8c5a',
-        'orange-glow': 'rgba(255,107,43,0.3)',
+        'red-glow': 'rgba(239,68,68,0.3)',
+        'green-glow': 'rgba(34,197,94,0.3)',
       },
       fontFamily: {
         rajdhani: ['Rajdhani', 'sans-serif'],
@@ -40,8 +40,8 @@ export default {
           '50%': { transform: 'translateY(-20px)' },
         },
         'pulse-glow': {
-          '0%, 100%': { boxShadow: '0 0 10px rgba(255,107,43,0.3)' },
-          '50%': { boxShadow: '0 0 30px rgba(255,107,43,0.8)' },
+          '0%, 100%': { boxShadow: '0 0 10px rgba(239,68,68,0.3)' },
+          '50%': { boxShadow: '0 0 30px rgba(34,197,94,0.8)' },
         },
         marquee: {
           '0%': { transform: 'translateX(0%)' },
@@ -57,13 +57,14 @@ export default {
         },
       },
       backgroundImage: {
-        'blueprint-grid': "linear-gradient(rgba(30,58,95,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(30,58,95,0.4) 1px, transparent 1px)",
+        'blueprint-grid': "linear-gradient(rgba(34,197,94,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(34,197,94,0.15) 1px, transparent 1px)",
       },
       backgroundSize: {
         'grid-40': '40px 40px',
       },
       boxShadow: {
-        'orange-glow': '0 0 20px rgba(255,107,43,0.5)',
+        'red-glow': '0 0 20px rgba(239,68,68,0.5)',
+        'green-glow': '0 0 20px rgba(34,197,94,0.5)',
         'steel-glow': '0 0 20px rgba(30,58,95,0.5)',
         'card': '0 8px 32px rgba(0,0,0,0.4)',
       },

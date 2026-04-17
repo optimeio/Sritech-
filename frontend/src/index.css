@@ -8,7 +8,10 @@
 ───────────────────────────────────────────────────────────────────────── */
 
 @layer base {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -29,23 +32,30 @@
     overflow-x: hidden;
     min-height: 100vh;
     /* Better tap highlight on mobile */
-    -webkit-tap-highlight-color: rgba(255, 107, 43, 0.15);
+    -webkit-tap-highlight-color: rgba(239, 68, 68, 0.15);
   }
 
   /* Desktop custom cursor */
   @media (min-width: 768px) {
-    body { cursor: none; }
+    body {
+      cursor: none;
+    }
   }
 
   /* Minimum touch target — 44×44px (WCAG 2.5.5) */
-  button, a, [role="button"] {
+  button,
+  a,
+  [role="button"] {
     min-height: 44px;
     min-width: 44px;
     touch-action: manipulation;
   }
 
   /* Override for inline/small elements that don't need it */
-  span[role="button"] { min-height: auto; min-width: auto; }
+  span[role="button"] {
+    min-height: auto;
+    min-width: auto;
+  }
 
   img {
     max-width: 100%;
@@ -55,7 +65,7 @@
 
   /* Global focus visible ring */
   :focus-visible {
-    outline: 2px solid #ff6b2b;
+    outline: 2px solid #ef4444;
     outline-offset: 3px;
     border-radius: 4px;
   }
@@ -71,15 +81,53 @@
 }
 
 /* ───── Color tokens ───── */
-.text-orange   { color: #ff6b2b; }
-.text-silver   { color: #c0c8d8; }
-.text-offwhite { color: #f4f6f9; }
-.text-charcoal { color: #0f1117; }
-.bg-charcoal   { background-color: #0f1117; }
-.bg-steel      { background-color: #1e3a5f; }
-.bg-orange     { background-color: #ff6b2b; }
-.border-orange { border-color: #ff6b2b; }
-.border-steel  { border-color: #1e3a5f; }
+.text-red {
+  color: #ef4444;
+}
+
+.text-green {
+  color: #22c55e;
+}
+
+.text-silver {
+  color: #c0c8d8;
+}
+
+.text-offwhite {
+  color: #f4f6f9;
+}
+
+.text-charcoal {
+  color: #0f1117;
+}
+
+.bg-charcoal {
+  background-color: #0f1117;
+}
+
+.bg-steel {
+  background-color: #1a1a1a;
+}
+
+.bg-red {
+  background-color: #ef4444;
+}
+
+.bg-green {
+  background-color: #22c55e;
+}
+
+.border-red {
+  border-color: #ef4444;
+}
+
+.border-green {
+  border-color: #22c55e;
+}
+
+.border-steel {
+  border-color: #333333;
+}
 
 /* ───── Section title — fluid scaling ───── */
 .section-title {
@@ -100,36 +148,56 @@
 
 /* ───── Glassmorphism card ───── */
 .glass-card {
-  background: rgba(30, 58, 95, 0.18);
+  background: rgba(45, 45, 45, 0.4);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
-  border: 1px solid rgba(192, 200, 216, 0.14);
+  border: 1px solid rgba(239, 68, 68, 0.15);
   border-radius: 14px;
 }
 
 /* ───── Blueprint grid bg ───── */
 .blueprint-bg {
   background-image:
-    linear-gradient(rgba(30, 58, 95, 0.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(30, 58, 95, 0.5) 1px, transparent 1px);
+    linear-gradient(rgba(34, 197, 94, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(34, 197, 94, 0.08) 1px, transparent 1px);
   background-size: 40px 40px;
   animation: bpPan 25s linear infinite;
 }
 
 @keyframes bpPan {
-  0%   { background-position: 0 0; }
-  100% { background-position: 40px 40px; }
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 40px 40px;
+  }
 }
 
 /* ───── Glow shadows ───── */
-.shadow-orange-glow { box-shadow: 0 0 24px rgba(255, 107, 43, 0.55); }
-.shadow-steel-glow  { box-shadow: 0 0 24px rgba(30, 58, 95, 0.6); }
+.shadow-red-glow {
+  box-shadow: 0 0 24px rgba(239, 68, 68, 0.55);
+}
+
+.shadow-green-glow {
+  box-shadow: 0 0 24px rgba(34, 197, 94, 0.4);
+}
+
+.shadow-steel-glow {
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.05);
+}
 
 /* ───── Skill bars ───── */
-.skill-bar { height: 8px; background: rgba(30, 58, 95, 0.35); border-radius: 4px; overflow: hidden; }
+.skill-bar {
+  height: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
 .skill-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #1e3a5f, #ff6b2b);
+  background: linear-gradient(90deg, #ef4444, #22c55e);
   border-radius: 4px;
   will-change: width;
   transition: width 1.6s cubic-bezier(0.22, 0.61, 0.36, 1);
@@ -137,44 +205,70 @@
 
 /* ───── Marquee ───── */
 @keyframes marquee {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
 }
+
 @keyframes marquee-reverse {
-  0%   { transform: translateX(-50%); }
-  100% { transform: translateX(0%); }
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
 
 /* ───── Dashed flowing line ───── */
 .dashed-flowing {
   position: relative;
   overflow: hidden;
-  border-top: 2px dashed rgba(255, 107, 43, 0.3);
+  border-top: 2px dashed rgba(239, 68, 68, 0.3);
 }
+
 .dashed-flowing::after {
   content: '';
   position: absolute;
-  top: -1px; left: -100%;
-  width: 100%; height: 2px;
-  background: linear-gradient(90deg, transparent, #ff6b2b, transparent);
+  top: -1px;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ef4444, transparent);
   animation: lineTravel 2s linear infinite;
 }
+
 @keyframes lineTravel {
-  0%   { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+
+  100% {
+    left: 100%;
+  }
 }
 
 /* ───── Ripple button ───── */
-.ripple-effect { position: relative; overflow: hidden; }
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
 .ripple-effect::after {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute;
+  inset: 0;
   border-radius: inherit;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
   opacity: 0;
   transform: scale(0);
   transition: transform 0.5s, opacity 0.5s;
 }
+
 .ripple-effect:active::after {
   transform: scale(2.5);
   opacity: 1;
@@ -182,16 +276,35 @@
 }
 
 /* ───── Custom scrollbar ───── */
-::-webkit-scrollbar { width: 5px; }
-::-webkit-scrollbar-track  { background: #0f1117; }
-::-webkit-scrollbar-thumb  { background: #1e3a5f; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #ff6b2b; }
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f1117;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ef4444;
+}
 
 /* ───── Accent line ───── */
-.accent-line { width: 48px; height: 3px; background: #ff6b2b; border-radius: 2px; }
+.accent-line {
+  width: 48px;
+  height: 3px;
+  background: #ef4444;
+  border-radius: 2px;
+}
 
 /* ───── Performance hint ───── */
-.will-transform { will-change: transform; }
+.will-transform {
+  will-change: transform;
+}
 
 /* ─────────────────────────────────────────────────────────────────────
    MOBILE-FIRST RESPONSIVE OVERRIDES
@@ -199,10 +312,14 @@
 
 /* === BASE: 320px–479px (small phones) === */
 @media (max-width: 479px) {
-  .section-title { font-size: clamp(1.5rem, 8vw, 2rem); }
+  .section-title {
+    font-size: clamp(1.5rem, 8vw, 2rem);
+  }
 
   /* Project grid: single column */
-  .project-grid { grid-template-columns: 1fr !important; }
+  .project-grid {
+    grid-template-columns: 1fr !important;
+  }
 
   /* Category filter: scrollable row */
   .filter-tabs {
@@ -215,25 +332,41 @@
     justify-content: flex-start !important;
     gap: 8px !important;
   }
-  .filter-tabs::-webkit-scrollbar { display: none; }
-  .filter-tabs button { flex-shrink: 0; }
+
+  .filter-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .filter-tabs button {
+    flex-shrink: 0;
+  }
 
   /* Lightbox: full-screen safe area */
-  .lightbox-inner { padding: 12px 10px !important; }
+  .lightbox-inner {
+    padding: 12px 10px !important;
+  }
 
   /* Thumbnail: smaller on tiny screens */
-  .thumb-btn { width: 64px !important; height: 48px !important; }
+  .thumb-btn {
+    width: 64px !important;
+    height: 48px !important;
+  }
 }
 
 /* === SM: 480px–639px === */
 @media (min-width: 480px) and (max-width: 639px) {
-  .section-title { font-size: clamp(1.75rem, 7vw, 2.4rem); }
+  .section-title {
+    font-size: clamp(1.75rem, 7vw, 2.4rem);
+  }
 }
 
 /* === MD breakpoint ── ensure nav hamburger visible === */
 @media (max-width: 1023px) {
+
   /* Reduce hero to fit */
-  #hero { padding-top: 100px !important; }
+  #hero {
+    padding-top: 100px !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -241,7 +374,9 @@
 ────────────────────────────────────────────────────────────────────── */
 
 /* Ensure lightbox sits above everything including cookie banners */
-[role="dialog"][aria-modal="true"] { z-index: 9999 !important; }
+[role="dialog"][aria-modal="true"] {
+  z-index: 9999 !important;
+}
 
 /* Lightbox safe-area padding for notched phones */
 .lightbox-panel {
@@ -252,8 +387,15 @@
 
 /* On phones the main image uses less vertical space */
 @media (max-width: 639px) {
-  .lightbox-img-zone { max-height: 50vh !important; min-height: 220px !important; }
-  .lightbox-arrow { width: 36px !important; height: 36px !important; }
+  .lightbox-img-zone {
+    max-height: 50vh !important;
+    min-height: 220px !important;
+  }
+
+  .lightbox-arrow {
+    width: 36px !important;
+    height: 36px !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -262,16 +404,24 @@
 
 /* Remove hover-only styles on touch devices */
 @media (hover: none) {
-  .group-hover\:scale-105:is(img) { transform: none !important; }
+  .group-hover\:scale-105:is(img) {
+    transform: none !important;
+  }
+
   /* Make gallery hover overlay always slightly visible on mobile */
-  .project-hover-overlay { opacity: 0.6 !important; }
+  .project-hover-overlay {
+    opacity: 0.6 !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
    GLOBAL SECTION SPACING — MOBILE TIGHTER
 ────────────────────────────────────────────────────────────────────── */
 @media (max-width: 767px) {
-  section { padding-top: 4rem !important; padding-bottom: 4rem !important; }
+  section {
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -284,6 +434,7 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -296,7 +447,9 @@
    SPINNER KEYFRAME (used by lightbox skeleton)
 ────────────────────────────────────────────────────────────────────── */
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* ─────────────────────────────────────────────────────────────────────
@@ -310,8 +463,19 @@ img {
 /* Thumbnail strip scrollbar — thin colored */
 .thumb-strip {
   scrollbar-width: thin;
-  scrollbar-color: #ff6b2b #1e3a5f;
+  scrollbar-color: #ef4444 #1a1a1a;
 }
-.thumb-strip::-webkit-scrollbar { height: 3px; }
-.thumb-strip::-webkit-scrollbar-track { background: #1e3a5f; border-radius: 2px; }
-.thumb-strip::-webkit-scrollbar-thumb { background: #ff6b2b; border-radius: 2px; }
+
+.thumb-strip::-webkit-scrollbar {
+  height: 3px;
+}
+
+.thumb-strip::-webkit-scrollbar-track {
+  background: #1a1a1a;
+  border-radius: 2px;
+}
+
+.thumb-strip::-webkit-scrollbar-thumb {
+  background: #ef4444;
+  border-radius: 2px;
+}

@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, Component } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import SEO from './components/SEO';
 import CustomCursor from './components/CustomCursor';
@@ -25,6 +25,31 @@ const AdminLogin = lazy(() => import('./pages/admin/AdminLogin'));
 const AdminDashboard = lazy(() => import('./pages/admin/AdminDashboard'));
 const AuthPage = lazy(() => import('./pages/auth/AuthPage'));
 const ShopPage = lazy(() => import('./pages/shop/ShopPage'));
+const ProductDetailPage = lazy(() => import('./pages/shop/ProductDetailPage'));
+
+class ErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div className="min-h-screen bg-charcoal flex items-center justify-center p-6 text-center">
+          <div>
+            <h2 className="text-2xl font-rajdhani font-bold text-white mb-4">Something went wrong</h2>
+            <p className="text-silver/60 mb-6">Failed to load this section. This usually happens after a new deployment.</p>
+            <button onClick={() => window.location.reload()} className="bg-orange text-white px-6 py-2 rounded-lg font-bold">Refresh Page</button>
+          </div>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 function SectionLoader() {
   return (
@@ -53,6 +78,9 @@ function MainSite() {
   const location = useLocation();
 
   useEffect(() => {
+    // Warm up Render backend (Free Tier cold start fix)
+    fetch(`${import.meta.env.VITE_API_URL || ''}/api/health`).catch(() => {});
+    
     if (location.state?.scrollTo) {
       setTimeout(() => {
         const el = document.getElementById(location.state.scrollTo);
@@ -91,25 +119,42 @@ function MainSite() {
 }
 
 export default function App() {
-  const isAdmin = !!localStorage.getItem('sritech_token');
   return (
-    <Routes>
-      <Route path="/" element={<MainSite />} />
-      <Route path="/auth" element={
-        <Suspense fallback={<FullPageLoader />}>
-          <CustomCursor />
-          <Navbar />
-          <AuthPage />
-        </Suspense>
-      } />
-      <Route path="/shop" element={
-        <Suspense fallback={<FullPageLoader />}>
-          <CustomCursor />
-          <ShopPage />
-        </Suspense>
-      } />
-      <Route path="/admin" element={<Suspense fallback={<FullPageLoader />}>{isAdmin ? <AdminDashboard /> : <AdminLogin />}</Suspense>} />
-      <Route path="*" element={<MainSite />} />
-    </Routes>
+    <ErrorBoundary>
+      <Routes>
+        <Route path="/" element={<MainSite />} />
+        <Route path="/auth" element={
+          <Suspense fallback={<FullPageLoader />}>
+            <CustomCursor />
+            <Navbar />
+            <AuthPage />
+          </Suspense>
+        } />
+        <Route path="/shop" element={
+          <Suspense fallback={<FullPageLoader />}>
+            <CustomCursor />
+            <ShopPage />
+          </Suspense>
+        } />
+        <Route path="/product/:id" element={
+          <Suspense fallback={<FullPageLoader />}>
+            <CustomCursor />
+            <ProductDetailPage />
+          </Suspense>
+        } />
+        <Route path="/admin/*" element={
+          <Suspense fallback={<FullPageLoader />}>
+            <CustomCursor />
+            <AdminWrapper />
+          </Suspense>
+        } />
+        <Route path="*" element={<MainSite />} />
+      </Routes>
+    </ErrorBoundary>
   );
+}
+
+function AdminWrapper() {
+  const token = localStorage.getItem('sritech_token');
+  return token ? <AdminDashboard /> : <AdminLogin />;
 }

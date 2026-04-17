@@ -31,7 +31,7 @@ export default function ProductBanner() {
             style={{
                 position: 'relative',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #7f0000 0%, #b91c1c 35%, #dc2626 60%, #991b1b 100%)',
+                background: 'linear-gradient(135deg, #ff6b2b 0%, #ff8c5a 35%, #e84a0a 60%, #bc3908 100%)',
                 padding: '0',
             }}
         >
@@ -157,7 +157,7 @@ export default function ProductBanner() {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: 10,
-                        background: 'linear-gradient(135deg, #fbbf24, #f59e0b)',
+                        background: 'linear-gradient(135deg, #ff8c5a, #ff6b2b)',
                         color: '#1a0000',
                         fontFamily: 'Rajdhani, sans-serif',
                         fontWeight: 700,
@@ -167,7 +167,7 @@ export default function ProductBanner() {
                         textDecoration: 'none',
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
-                        boxShadow: '0 4px 24px rgba(251,191,36,0.5)',
+                        boxShadow: '0 4px 24px rgba(255,107,43,0.5)',
                         transition: 'all 0.2s',
                     }}
                     aria-label={banner.buttonText}

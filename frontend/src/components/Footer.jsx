@@ -53,14 +53,14 @@ export default function Footer() {
     return (
         <footer
             className="relative overflow-hidden"
-            style={{ background: '#080c12' }}
+            style={{ background: '#0a0a0a' }}
             role="contentinfo"
             aria-label="Sri Tech Engineering footer"
         >
             {/* Blueprint bg */}
             <div className="absolute inset-0 blueprint-bg" style={{ backgroundSize: '50px 50px', opacity: 0.15 }} aria-hidden="true" />
             {/* Top orange line */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-orange to-transparent" aria-hidden="true" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-red to-transparent" aria-hidden="true" />
 
             <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
                 {/* Main footer grid */}
@@ -74,11 +74,11 @@ export default function Footer() {
                                     alt="Sri Tech Engineering logo"
                                     className="h-10 w-auto"
                                     loading="lazy"
-                                    style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px rgba(255,107,43,0.7))' }}
+                                    style={{ filter: 'brightness(0) invert(1) drop-shadow(0 0 6px rgba(239, 68, 68, 0.7))' }}
                                 />
                                 <div>
                                     <div className="font-rajdhani font-bold leading-tight" style={{ color: '#f4f6f9' }}>Sri Tech Engineering</div>
-                                    <div className="font-source text-xs tracking-widest" style={{ color: '#ff6b2b' }}>Beyond Technology</div>
+                                    <div className="font-source text-xs tracking-widest" style={{ color: '#22c55e' }}>Beyond Technology</div>
                                 </div>
                             </div>
                         </a>
@@ -86,17 +86,17 @@ export default function Footer() {
                             Precision manufacturing of Agro, Food & Poultry Machineries, Material Fabrication & Engineering Works.
                         </p>
                         <div className="flex items-start gap-2 mb-4">
-                            <MapPin size={14} color="rgba(255,107,43,0.7)" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
+                            <MapPin size={14} color="rgba(239, 68, 68, 0.7)" className="mt-0.5 flex-shrink-0" aria-hidden="true" />
                             <address className="font-source text-silver/50 text-xs not-italic leading-relaxed">
                                 {COMPANY.address}
                             </address>
                         </div>
                         <div className="flex items-center gap-2 mb-6">
-                            <Mail size={14} color="rgba(255,107,43,0.7)" aria-hidden="true" />
+                            <Mail size={14} color="rgba(239, 68, 68, 0.7)" aria-hidden="true" />
                             <a
                                 href={`mailto:${COMPANY.email}`}
                                 aria-label={`Email us at ${COMPANY.email}`}
-                                className="font-source text-silver/60 text-xs hover:text-orange transition-colors"
+                                className="font-source text-silver/60 text-xs hover:text-green transition-colors"
                             >
                                 {COMPANY.email}
                             </a>
@@ -114,7 +114,7 @@ export default function Footer() {
                                 className="w-9 h-9 rounded-lg border border-silver/15 flex items-center justify-center text-silver/50 hover:border-[#1877F2]/50 hover:text-[#1877F2] transition-all duration-200"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/>
+                                    <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047v-2.66c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.236 2.686.236v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.265h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
                                 </svg>
                             </motion.a>
                             {/* Instagram */}
@@ -127,7 +127,7 @@ export default function Footer() {
                                 className="w-9 h-9 rounded-lg border border-silver/15 flex items-center justify-center text-silver/50 hover:border-[#E1306C]/50 hover:text-[#E1306C] transition-all duration-200"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
                                 </svg>
                             </motion.a>
                         </div>
@@ -146,7 +146,7 @@ export default function Footer() {
                                             href={link.href}
                                             onClick={(e) => { e.preventDefault(); scrollTo(link.href); }}
                                             aria-label={link.label}
-                                            className="font-source text-silver/50 text-sm hover:text-orange transition-colors duration-200"
+                                            className="font-source text-silver/50 text-sm hover:text-red transition-colors duration-200"
                                         >
                                             {link.label}
                                         </a>
@@ -195,14 +195,14 @@ export default function Footer() {
                                 type="email"
                                 placeholder="Enter your email"
                                 aria-label="Email for newsletter"
-                                className="flex-1 sm:w-64 bg-[rgba(30,58,95,0.2)] border border-silver/15 rounded-lg px-4 py-2.5 font-source text-sm text-offwhite placeholder-silver/40 focus:outline-none focus:border-orange transition-colors"
+                                className="flex-1 sm:w-64 bg-[rgba(239,68,68,0.05)] border border-silver/15 rounded-lg px-4 py-2.5 font-source text-sm text-offwhite placeholder-silver/40 focus:outline-none focus:border-red transition-colors"
                             />
                             <motion.button
                                 type="submit"
                                 whileHover={{ scale: 1.04 }}
                                 whileTap={{ scale: 0.96 }}
                                 aria-label="Subscribe to newsletter"
-                                className="bg-orange text-white font-rajdhani font-bold px-5 py-2.5 rounded-lg text-sm uppercase tracking-wider hover:shadow-orange-glow transition-all duration-300"
+                                className="bg-red text-white font-rajdhani font-bold px-5 py-2.5 rounded-lg text-sm uppercase tracking-wider hover:shadow-red-glow transition-all duration-300"
                             >
                                 Subscribe
                             </motion.button>
@@ -216,12 +216,12 @@ export default function Footer() {
                         © {new Date().getFullYear()} Sri Tech Engineering, Namakkal. All rights reserved.
                     </p>
                     <div className="flex gap-4">
-                        {['Privacy Policy', 'Terms of Service'].map((item) => (
+                        {['Privacy Policy', 'Terms of Service', 'Admin Portal'].map((item) => (
                             <a
                                 key={item}
-                                href="#"
+                                href={item === 'Admin Portal' ? '/admin' : '#'}
                                 aria-label={item}
-                                className="font-source text-silver/40 text-xs hover:text-orange transition-colors"
+                                className="font-source text-silver/40 text-xs hover:text-green transition-colors"
                             >
                                 {item}
                             </a>
@@ -233,10 +233,10 @@ export default function Footer() {
             {/* Back to Top */}
             <motion.button
                 onClick={scrollToTop}
-                whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(255,107,43,0.5)' }}
+                whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(239, 68, 68, 0.5)' }}
                 whileTap={{ scale: 0.9 }}
                 aria-label="Back to top"
-                className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-orange flex items-center justify-center shadow-lg z-40 transition-all duration-300"
+                className="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-red flex items-center justify-center shadow-lg z-40 transition-all duration-300"
             >
                 <ArrowUp size={20} color="white" />
             </motion.button>

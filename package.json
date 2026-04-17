@@ -6,10 +6,12 @@
     "scripts": {
         "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\" --names \"FRONTEND,BACKEND\" --prefix-colors \"cyan,yellow\"",
         "build": "npm run build --prefix frontend",
-        "start": "npm run start --prefix backend",
+        "start": "node backend/server.js",
         "install:all": "npm install --prefix frontend && npm install --prefix backend",
         "setup": "npm run install:all",
-        "postinstall": "npm install --prefix backend"
+        "postinstall": "npm install --prefix backend",
+        "build:prod": "npm run build --prefix frontend && echo '✅ Front-end built. Copy frontend/dist/ contents to Hostinger public_html/'",
+        "deploy:hostinger": "npm run build:prod && echo '🚀 HYBRID DEPLOYMENT: 1. Render backend pings automatically. 2. Upload dist/ to Hostinger. 3. Ensure frontend/.env.production has your Render URL.'"
     },
     "devDependencies": {
         "concurrently": "^9.0.1"

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Cog, Wrench, Cpu, Zap } from 'lucide-react';
+import heroBg from '../assets/hero-bg.png';
 
 const STATS = [
     { value: 10, suffix: '+', label: 'Years Experience' },
@@ -34,9 +35,9 @@ function StatItem({ stat, start }) {
             animate={start ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.5 }}
             className="text-center px-4 py-3 rounded-xl"
-            style={{ background: 'rgba(30,58,95,0.25)', border: '1px solid rgba(255,107,43,0.2)' }}
+            style={{ background: 'rgba(239, 68, 68, 0.05)', border: '1px solid rgba(239, 68, 68, 0.2)' }}
         >
-            <div className="font-rajdhani font-bold text-3xl md:text-4xl" style={{ color: '#ff6b2b' }}>
+            <div className="font-rajdhani font-bold text-3xl md:text-4xl" style={{ color: '#ef4444' }}>
                 {count}{stat.suffix}
             </div>
             <div className="font-source text-xs mt-0.5 uppercase tracking-wider" style={{ color: 'rgba(192,200,216,0.8)' }}>
@@ -78,7 +79,7 @@ function HeroCanvas() {
             /* Blueprint grid */
             const gs = 50;
             const off = offset % gs;
-            ctx.strokeStyle = 'rgba(30,58,95,0.6)';
+            ctx.strokeStyle = 'rgba(239, 68, 68, 0.1)';
             ctx.lineWidth = 0.7;
             for (let x = -gs + off; x < W + gs; x += gs) {
                 ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
@@ -87,11 +88,11 @@ function HeroCanvas() {
                 ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
             }
 
-            /* Glowing orange cross-dots at grid intersections */
+            /* Glowing red cross-dots at grid intersections */
             for (let x = -gs + off; x < W + gs; x += gs) {
                 for (let y = -gs + off; y < H + gs; y += gs) {
                     const grd = ctx.createRadialGradient(x, y, 0, x, y, 4);
-                    grd.addColorStop(0, 'rgba(255,107,43,0.5)');
+                    grd.addColorStop(0, 'rgba(239, 68, 68, 0.5)');
                     grd.addColorStop(1, 'transparent');
                     ctx.fillStyle = grd;
                     ctx.beginPath();
@@ -106,7 +107,7 @@ function HeroCanvas() {
                 if (p.x < 0) p.x = 1; if (p.x > 1) p.x = 0;
                 if (p.y < 0) p.y = 1; if (p.y > 1) p.y = 0;
                 const grd = ctx.createRadialGradient(p.x * W, p.y * H, 0, p.x * W, p.y * H, p.r * 3);
-                grd.addColorStop(0, 'rgba(255,107,43,0.9)');
+                grd.addColorStop(0, 'rgba(239, 68, 68, 0.9)');
                 grd.addColorStop(1, 'transparent');
                 ctx.fillStyle = grd;
                 ctx.beginPath();
@@ -115,7 +116,7 @@ function HeroCanvas() {
             });
 
             /* Particle connection lines */
-            ctx.strokeStyle = 'rgba(30,58,95,0.35)';
+            ctx.strokeStyle = 'rgba(34, 197, 94, 0.15)';
             ctx.lineWidth = 0.6;
             for (let i = 0; i < PARTICLES.length; i++) {
                 for (let j = i + 1; j < PARTICLES.length; j++) {
@@ -134,12 +135,13 @@ function HeroCanvas() {
             }
 
             /* Orange circuit traces — horizontal & vertical lines */
-            ctx.strokeStyle = 'rgba(255,107,43,0.12)';
+            ctx.strokeStyle = 'rgba(239, 68, 68, 0.12)';
             ctx.lineWidth = 1;
             [H * 0.3, H * 0.6, H * 0.8].forEach(y => {
                 ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
             });
             [W * 0.2, W * 0.75].forEach(x => {
+                ctx.strokeStyle = 'rgba(34, 197, 94, 0.12)';
                 ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
             });
 
@@ -199,12 +201,24 @@ export default function Hero() {
             {/* Animated canvas background */}
             <HeroCanvas />
 
+            {/* Hero background image */}
+            <div
+                className="absolute inset-0 z-0"
+                style={{
+                    backgroundImage: `url(${heroBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                }}
+                aria-hidden="true"
+            />
+
             {/* Gradient overlay */}
             <div
-                className="absolute inset-0"
+                className="absolute inset-0 z-0"
                 style={{
                     background:
-                        'linear-gradient(135deg, rgba(15,17,23,0.96) 0%, rgba(18,37,63,0.55) 45%, rgba(15,17,23,0.94) 100%)',
+                        'linear-gradient(135deg, rgba(15,17,23,0.95) 0%, rgba(25,20,15,0.6) 50%, rgba(15,17,23,0.95) 100%)',
                 }}
                 aria-hidden="true"
             />
@@ -212,7 +226,7 @@ export default function Hero() {
             {/* Bottom orange line */}
             <div
                 className="absolute bottom-0 left-0 right-0 h-px"
-                style={{ background: 'linear-gradient(90deg, transparent, #ff6b2b, transparent)' }}
+                style={{ background: 'linear-gradient(90deg, transparent, #ef4444, transparent)' }}
                 aria-hidden="true"
             />
 
@@ -220,7 +234,7 @@ export default function Hero() {
             <div
                 className="absolute top-20 left-0 w-80 h-80 rounded-full"
                 style={{
-                    background: 'radial-gradient(circle, rgba(30,58,95,0.35) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(239, 68, 68, 0.15) 0%, transparent 70%)',
                 }}
                 aria-hidden="true"
             />
@@ -228,7 +242,7 @@ export default function Hero() {
             <div
                 className="absolute bottom-10 right-0 w-96 h-96 rounded-full"
                 style={{
-                    background: 'radial-gradient(circle, rgba(255,107,43,0.12) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(34, 197, 94, 0.12) 0%, transparent 70%)',
                 }}
                 aria-hidden="true"
             />
@@ -246,12 +260,12 @@ export default function Hero() {
                     <div
                         className="p-3 rounded-xl"
                         style={{
-                            background: 'rgba(30,58,95,0.4)',
-                            border: '1px solid rgba(255,107,43,0.25)',
+                            background: 'rgba(239, 68, 68, 0.08)',
+                            border: '1px solid rgba(239, 68, 68, 0.25)',
                             backdropFilter: 'blur(4px)',
                         }}
                     >
-                        <Icon size={size} color="#ff6b2b" strokeWidth={1.2} />
+                        <Icon size={size} color="#22c55e" strokeWidth={1.2} />
                     </div>
                 </motion.div>
             ))}
@@ -266,10 +280,10 @@ export default function Hero() {
                         transition={{ duration: 0.6, delay: 0.2 }}
                         className="flex items-center gap-3 mb-6"
                     >
-                        <div className="h-px w-14" style={{ background: '#ff6b2b' }} />
+                        <div className="h-px w-14" style={{ background: '#ef4444' }} />
                         <span
                             className="font-rajdhani font-bold text-sm uppercase tracking-widest"
-                            style={{ color: '#ff6b2b' }}
+                            style={{ color: '#22c55e' }}
                         >
                             Precision Engineering — Namakkal, Tamil Nadu
                         </span>
@@ -287,8 +301,8 @@ export default function Hero() {
                                 transition={{ duration: 0.6, delay: 0.4 + i * 0.12 }}
                                 className="inline-block mr-4"
                                 style={{
-                                    color: i >= 3 ? '#ff6b2b' : '#f4f6f9',
-                                    textShadow: i >= 3 ? '0 0 40px rgba(255,107,43,0.6)' : 'none',
+                                    color: i >= 3 ? '#ef4444' : '#f4f6f9',
+                                    textShadow: i >= 3 ? '0 0 40px rgba(239, 68, 68, 0.6)' : 'none',
                                 }}
                             >
                                 {word}
@@ -324,25 +338,29 @@ export default function Hero() {
                         className="flex flex-wrap gap-3 mb-8 sm:mb-14"
                     >
                         <motion.button
-                            whileHover={{ scale: 1.06, boxShadow: '0 0 32px rgba(255,107,43,0.55)' }}
+                            whileHover={{ scale: 1.06, boxShadow: '0 0 40px rgba(239, 68, 68, 0.6)' }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => scrollTo('#projects')}
                             aria-label="Explore Our Work"
-                            className="font-rajdhani font-bold text-base uppercase tracking-wider px-8 py-4 rounded-xl text-white transition-all duration-300"
-                            style={{ background: 'linear-gradient(135deg, #ff6b2b, #e55020)', boxShadow: '0 4px 20px rgba(255,107,43,0.35)' }}
+                            className="font-rajdhani font-bold text-base uppercase tracking-widest px-10 py-4 rounded-xl text-white transition-all duration-300 shadow-xl"
+                            style={{ 
+                                background: 'linear-gradient(135deg, #ef4444 0%, #ff6b2b 100%)', 
+                                boxShadow: '0 8px 30px rgba(239, 68, 68, 0.4)' 
+                            }}
                         >
                             Explore Our Work
                         </motion.button>
                         <motion.button
-                            whileHover={{ scale: 1.06, borderColor: '#ff6b2b', color: '#ff6b2b' }}
+                            whileHover={{ scale: 1.06, borderColor: '#22c55e', color: '#22c55e', background: 'rgba(34, 197, 94, 0.1)' }}
                             whileTap={{ scale: 0.95 }}
                             onClick={() => scrollTo('#contact')}
                             aria-label="Contact Us"
-                            className="font-rajdhani font-bold text-base uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300"
+                            className="font-rajdhani font-bold text-base uppercase tracking-wider px-8 py-4 rounded-xl transition-all duration-300 shadow-lg"
                             style={{
-                                border: '2px solid rgba(192,200,216,0.35)',
-                                color: '#c0c8d8',
-                                background: 'rgba(30,58,95,0.2)',
+                                border: '2px solid rgba(34, 197, 94, 0.4)',
+                                color: '#22c55e',
+                                background: 'rgba(34, 197, 94, 0.05)',
+                                boxShadow: '0 4px 15px rgba(34, 197, 94, 0.15)'
                             }}
                         >
                             Contact Us
@@ -374,7 +392,7 @@ export default function Hero() {
                     animate={{ y: [0, 10, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                    <ChevronDown size={26} color="rgba(255,107,43,0.8)" />
+                    <ChevronDown size={26} color="rgba(34, 197, 94, 0.8)" />
                 </motion.div>
             </motion.button>
         </section>

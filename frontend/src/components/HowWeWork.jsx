@@ -18,7 +18,7 @@ export default function HowWeWork() {
         <section id="how-we-work" className="relative py-24 overflow-hidden" aria-labelledby="process-title">
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, #0a0f18 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.9) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -31,12 +31,12 @@ export default function HowWeWork() {
                     className="text-center mb-16"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-12 bg-orange" />
-                        <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">Our Process</span>
-                        <div className="h-px w-12 bg-orange" />
+                        <div className="h-px w-12 bg-red" />
+                        <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">Our Process</span>
+                        <div className="h-px w-12 bg-red" />
                     </div>
                     <h2 id="process-title" className="section-title mb-4">
-                        How We <span className="text-orange">Work</span>
+                        How We <span className="text-red">Work</span>
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         A systematic 5-step engineering process ensuring quality, precision, and on-time delivery
@@ -48,13 +48,13 @@ export default function HowWeWork() {
                     {/* Horizontal connector line (desktop) */}
                     <div
                         className="hidden lg:block absolute top-14 left-[10%] right-[10%] h-px"
-                        style={{ background: 'rgba(255,107,43,0.15)' }}
+                        style={{ background: 'rgba(239, 68, 68, 0.15)' }}
                         aria-hidden="true"
                     >
                         {/* Animated glow traveling through line */}
                         <motion.div
                             className="absolute top-0 h-full"
-                            style={{ width: '20%', background: 'linear-gradient(90deg, transparent, rgba(255,107,43,0.5), transparent)' }}
+                            style={{ width: '20%', background: 'linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.5), transparent)' }}
                             animate={{ left: ['0%', '80%', '0%'] }}
                             transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
                             aria-hidden="true"
@@ -79,7 +79,7 @@ export default function HowWeWork() {
                                     >
                                         {/* Number badge */}
                                         <div
-                                            className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-orange flex items-center justify-center font-rajdhani font-bold text-xs text-white z-10"
+                                            className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red flex items-center justify-center font-rajdhani font-bold text-xs text-white z-10"
                                             aria-hidden="true"
                                         >
                                             {step.step}
@@ -87,16 +87,16 @@ export default function HowWeWork() {
                                         <div
                                             className="w-28 h-28 rounded-2xl flex items-center justify-center transition-all duration-300 group-hover:scale-105"
                                             style={{
-                                                background: 'rgba(30,58,95,0.3)',
-                                                border: '1px solid rgba(255,107,43,0.2)',
+                                                background: 'rgba(34, 197, 94, 0.05)',
+                                                border: '1px solid rgba(239, 68, 68, 0.2)',
                                                 boxShadow: '0 4px 20px rgba(0,0,0,0.3)',
                                             }}
                                         >
                                             <div
-                                                className="w-20 h-20 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-orange/20"
-                                                style={{ background: 'rgba(30,58,95,0.5)' }}
+                                                className="w-20 h-20 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:bg-red/20"
+                                                style={{ background: 'rgba(239, 68, 68, 0.08)' }}
                                             >
-                                                <Icon size={36} color="#ff6b2b" strokeWidth={1.5} />
+                                                <Icon size={36} color={i % 2 === 0 ? '#ef4444' : '#22c55e'} strokeWidth={1.5} />
                                             </div>
                                         </div>
                                     </motion.div>
@@ -110,7 +110,7 @@ export default function HowWeWork() {
                                         />
                                     )}
 
-                                    <h3 className="font-rajdhani font-bold text-lg text-offwhite mb-2 group-hover:text-orange transition-colors duration-300">
+                                    <h3 className="font-rajdhani font-bold text-lg text-offwhite mb-2 group-hover:text-green transition-colors duration-300">
                                         {step.title}
                                     </h3>
                                     <p className="font-source text-silver/70 text-sm leading-relaxed max-w-[180px]">
@@ -122,7 +122,7 @@ export default function HowWeWork() {
                     </div>
 
                     {/* Mobile vertical dashed connector */}
-                    <div className="lg:hidden absolute left-6 top-0 bottom-0 w-px" style={{ background: 'repeating-linear-gradient(to bottom, rgba(255,107,43,0.4) 0, rgba(255,107,43,0.4) 8px, transparent 8px, transparent 16px)' }} aria-hidden="true" />
+                    <div className="lg:hidden absolute left-6 top-0 bottom-0 w-px" style={{ background: 'repeating-linear-gradient(to bottom, rgba(239, 68, 68, 0.4) 0, rgba(239, 68, 68, 0.4) 8px, transparent 8px, transparent 16px)' }} aria-hidden="true" />
                 </div>
             </div>
         </section>

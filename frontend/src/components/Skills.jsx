@@ -15,7 +15,7 @@ function SkillBar({ skill, animate }) {
         <div>
             <div className="flex justify-between items-center mb-2">
                 <span className="font-rajdhani font-semibold text-sm" style={{ color: '#f4f6f9' }}>{skill.name}</span>
-                <span className="font-rajdhani font-bold text-sm" style={{ color: '#ff6b2b' }}>{skill.percent}%</span>
+                <span className="font-rajdhani font-bold text-sm" style={{ color: '#22c55e' }}>{skill.percent}%</span>
             </div>
             <div className="skill-bar">
                 <div
@@ -33,7 +33,7 @@ function SkillBar({ skill, animate }) {
     );
 }
 
-const SW_COLORS = ['#1e3a5f', '#ff6b2b', '#2a6e3f', '#3a1e5f', '#1e5f5a', '#7e4a1e'];
+const SW_COLORS = ['#ef4444', '#22c55e', '#ef4444', '#22c55e', '#333333', '#444444'];
 
 export default function Skills() {
     const [ref, inView] = useInView({ threshold: 0.1, triggerOnce: true });
@@ -43,7 +43,7 @@ export default function Skills() {
             <div className="absolute inset-0 blueprint-bg" style={{ opacity: 0.3 }} aria-hidden="true" />
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(12,18,30,0.92) 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.92) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -56,14 +56,14 @@ export default function Skills() {
                     className="text-center mb-14"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
-                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#ff6b2b' }}>
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
+                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#22c55e' }}>
                             Capabilities
                         </span>
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
                     </div>
                     <h2 id="skills-title" className="section-title mb-3">
-                        Skills &amp; <span style={{ color: '#ff6b2b' }}>Capabilities</span>
+                        Skills &amp; <span style={{ color: '#ef4444' }}>Capabilities</span>
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         Deep domain expertise backed by industry-leading software tools
@@ -78,13 +78,13 @@ export default function Skills() {
                         transition={{ duration: 0.7, delay: 0.15 }}
                         className="rounded-2xl p-6 md:p-8 space-y-6"
                         style={{
-                            background: 'rgba(20,30,48,0.6)',
-                            border: '1px solid rgba(192,200,216,0.12)',
+                            background: 'rgba(26,26,26,0.6)',
+                            border: '1px solid rgba(255,107,43,0.12)',
                             backdropFilter: 'blur(14px)',
                         }}
                     >
                         <h3 className="font-rajdhani font-bold text-2xl" style={{ color: '#f4f6f9' }}>
-                            Domain <span style={{ color: '#ff6b2b' }}>Expertise</span>
+                            Domain <span style={{ color: '#22c55e' }}>Expertise</span>
                         </h3>
                         {SKILLS.map((skill) => (
                             <SkillBar key={skill.name} skill={skill} animate={inView} />
@@ -100,13 +100,13 @@ export default function Skills() {
                             transition={{ duration: 0.7, delay: 0.25 }}
                             className="rounded-2xl p-6 md:p-8"
                             style={{
-                                background: 'rgba(20,30,48,0.6)',
-                                border: '1px solid rgba(192,200,216,0.12)',
+                                background: 'rgba(26,26,26,0.6)',
+                                border: '1px solid rgba(255,107,43,0.12)',
                                 backdropFilter: 'blur(14px)',
                             }}
                         >
                             <h3 className="font-rajdhani font-bold text-2xl mb-5" style={{ color: '#f4f6f9' }}>
-                                Software <span style={{ color: '#ff6b2b' }}>Proficiency</span>
+                                Software <span style={{ color: '#ef4444' }}>Proficiency</span>
                             </h3>
                             <div className="grid grid-cols-3 sm:grid-cols-4 gap-2.5">
                                 {SOFTWARE.map((sw, i) => (
@@ -137,13 +137,13 @@ export default function Skills() {
                             transition={{ duration: 0.7, delay: 0.35 }}
                             className="rounded-2xl p-6 md:p-8"
                             style={{
-                                background: 'rgba(20,30,48,0.6)',
-                                border: '1px solid rgba(192,200,216,0.12)',
+                                background: 'rgba(26,26,26,0.6)',
+                                border: '1px solid rgba(255,255,255,0.08)',
                                 backdropFilter: 'blur(14px)',
                             }}
                         >
                             <h3 className="font-rajdhani font-bold text-2xl mb-5" style={{ color: '#f4f6f9' }}>
-                                Technical <span style={{ color: '#ff6b2b' }}>Skills</span>
+                                Technical <span style={{ color: '#22c55e' }}>Skills</span>
                             </h3>
                             <div className="flex flex-wrap gap-2">
                                 {TECH_TAGS.map((tag, i) => (
@@ -155,9 +155,9 @@ export default function Skills() {
                                         whileHover={{ scale: 1.08 }}
                                         className="px-3 py-1.5 rounded-full font-source text-xs font-medium cursor-default"
                                         style={{
-                                            background: i % 2 === 0 ? 'rgba(255,107,43,0.15)' : 'rgba(30,58,95,0.3)',
-                                            color: i % 2 === 0 ? '#ff6b2b' : '#c0c8d8',
-                                            border: `1px solid ${i % 2 === 0 ? 'rgba(255,107,43,0.3)' : 'rgba(192,200,216,0.15)'}`,
+                                            background: i % 2 === 0 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(34, 197, 94, 0.15)',
+                                            color: i % 2 === 0 ? '#ef4444' : '#22c55e',
+                                            border: `1px solid ${i % 2 === 0 ? 'rgba(239,68,68,0.3)' : 'rgba(34,197,94,0.3)'}`,
                                         }}
                                     >
                                         {tag}

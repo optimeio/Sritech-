@@ -22,10 +22,10 @@ function MarqueRow({ items, reverse = false }) {
                 {doubled.map((client, i) => (
                     <div
                         key={`${client}-${i}`}
-                        className="flex-shrink-0 px-5 py-2.5 rounded-lg font-rajdhani font-semibold text-sm text-silver whitespace-nowrap cursor-default hover:text-orange transition-colors duration-200"
+                        className="flex-shrink-0 px-5 py-2.5 rounded-lg font-rajdhani font-semibold text-sm text-silver whitespace-nowrap cursor-default hover:text-green transition-colors duration-200"
                         style={{
-                            background: 'rgba(30,58,95,0.2)',
-                            border: '1px solid rgba(192,200,216,0.1)',
+                            background: 'rgba(239, 68, 68, 0.05)',
+                            border: '1px solid rgba(239, 68, 68, 0.1)',
                             minWidth: '180px',
                             textAlign: 'center',
                         }}
@@ -49,7 +49,7 @@ export default function Clients() {
         <section id="clients" className="relative py-24 overflow-hidden" aria-labelledby="clients-title">
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, #0c1018 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.85) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -62,12 +62,12 @@ export default function Clients() {
                         className="text-center"
                     >
                         <div className="flex items-center justify-center gap-3 mb-4">
-                            <div className="h-px w-12 bg-orange" />
-                            <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">Our Network</span>
-                            <div className="h-px w-12 bg-orange" />
+                            <div className="h-px w-12 bg-red" />
+                            <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">Our Network</span>
+                            <div className="h-px w-12 bg-red" />
                         </div>
                         <h2 id="clients-title" className="section-title mb-4">
-                            Trusted By <span className="text-orange">Industry Leaders</span>
+                            Trusted By <span className="text-red">Industry Leaders</span>
                         </h2>
                         <p className="section-subtitle max-w-2xl mx-auto">
                             A growing network of clients and partners across manufacturing, education, and construction sectors
@@ -95,17 +95,17 @@ export default function Clients() {
                         className="flex flex-wrap justify-center gap-8 text-center"
                     >
                         <div>
-                            <div className="font-rajdhani font-bold text-3xl text-orange">18+</div>
+                            <div className="font-rajdhani font-bold text-3xl text-red">18+</div>
                             <div className="font-source text-silver/60 text-sm">Partner Companies</div>
                         </div>
                         <div className="w-px bg-silver/20 hidden sm:block" />
                         <div>
-                            <div className="font-rajdhani font-bold text-3xl text-orange">6+</div>
+                            <div className="font-rajdhani font-bold text-3xl text-green">6+</div>
                             <div className="font-source text-silver/60 text-sm">Cities Covered</div>
                         </div>
                         <div className="w-px bg-silver/20 hidden sm:block" />
                         <div>
-                            <div className="font-rajdhani font-bold text-3xl text-orange">100%</div>
+                            <div className="font-rajdhani font-bold text-3xl text-red">100%</div>
                             <div className="font-source text-silver/60 text-sm">Client Satisfaction</div>
                         </div>
                     </motion.div>

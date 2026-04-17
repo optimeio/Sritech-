@@ -10,12 +10,12 @@ const iconMap = {
 };
 
 const GRADIENTS = [
-    'linear-gradient(135deg, rgba(42,110,63,0.25), rgba(15,17,23,0))',
-    'linear-gradient(135deg, rgba(126,74,30,0.25), rgba(15,17,23,0))',
-    'linear-gradient(135deg, rgba(30,58,95,0.35), rgba(15,17,23,0))',
-    'linear-gradient(135deg, rgba(58,30,95,0.25), rgba(15,17,23,0))',
-    'linear-gradient(135deg, rgba(30,95,90,0.25), rgba(15,17,23,0))',
-    'linear-gradient(135deg, rgba(95,74,30,0.25), rgba(15,17,23,0))',
+    'linear-gradient(135deg, rgba(239,68,68,0.15), rgba(15,17,23,0))',
+    'linear-gradient(135deg, rgba(34,197,94,0.15), rgba(15,17,23,0))',
+    'linear-gradient(135deg, rgba(239,68,68,0.12), rgba(15,17,23,0))',
+    'linear-gradient(135deg, rgba(34,197,94,0.12), rgba(15,17,23,0))',
+    'linear-gradient(135deg, rgba(239,68,68,0.1), rgba(15,17,23,0))',
+    'linear-gradient(110deg, rgba(34,197,94,0.15), rgba(15,17,23,0))',
 ];
 
 export default function Services() {
@@ -28,7 +28,7 @@ export default function Services() {
             <div className="absolute inset-0 blueprint-bg" style={{ opacity: 0.35 }} aria-hidden="true" />
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(10,15,24,0.9) 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.85) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -41,14 +41,14 @@ export default function Services() {
                     className="text-center mb-14"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
-                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#ff6b2b' }}>
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
+                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#22c55e' }}>
                             What We Do
                         </span>
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
                     </div>
                     <h2 id="services-title" className="section-title mb-3">
-                        Our <span style={{ color: '#ff6b2b' }}>Services</span>
+                        Industrial <span style={{ color: '#ef4444' }}>Manufacturing & Engineering</span> Solutions
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         End-to-end engineering solutions from concept to commissioning across diverse industries
@@ -72,11 +72,11 @@ export default function Services() {
                                 className="relative flex flex-col gap-4 p-6 rounded-2xl cursor-default overflow-hidden transition-all duration-300"
                                 style={{
                                     background: isHov
-                                        ? `${GRADIENTS[i]}, rgba(30,58,95,0.22)`
-                                        : 'rgba(20,30,48,0.5)',
-                                    border: `1px solid ${isHov ? 'rgba(255,107,43,0.4)' : 'rgba(192,200,216,0.1)'}`,
+                                        ? `${GRADIENTS[i]}, rgba(239,68,68,0.08)`
+                                        : 'rgba(26,26,26,0.6)',
+                                    border: `1px solid ${isHov ? (i % 2 === 0 ? '#ef4444' : '#22c55e') : 'rgba(192,200,216,0.1)'}`,
                                     backdropFilter: 'blur(14px)',
-                                    boxShadow: isHov ? '0 8px 40px rgba(255,107,43,0.15)' : '0 4px 20px rgba(0,0,0,0.3)',
+                                    boxShadow: isHov ? `0 8px 40px ${i % 2 === 0 ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)'}` : '0 4px 20px rgba(0,0,0,0.3)',
                                 }}
                                 aria-label={`Service: ${service.title}`}
                             >
@@ -84,7 +84,7 @@ export default function Services() {
                                 <div
                                     className="absolute top-0 left-0 right-0 h-0.5 transition-opacity duration-500"
                                     style={{
-                                        background: 'linear-gradient(90deg, transparent, #ff6b2b, transparent)',
+                                        background: `linear-gradient(90deg, transparent, ${i % 2 === 0 ? '#ef4444' : '#22c55e'}, transparent)`,
                                         opacity: isHov ? 1 : 0,
                                     }}
                                     aria-hidden="true"
@@ -94,9 +94,9 @@ export default function Services() {
                                 <div
                                     className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300"
                                     style={{
-                                        background: isHov ? 'rgba(255,107,43,0.2)' : 'rgba(30,58,95,0.35)',
-                                        border: `1px solid ${isHov ? 'rgba(255,107,43,0.5)' : 'rgba(30,58,95,0.6)'}`,
-                                        boxShadow: isHov ? '0 0 18px rgba(255,107,43,0.3)' : 'none',
+                                        background: isHov ? (i % 2 === 0 ? 'rgba(239,68,68,0.2)' : 'rgba(34,197,94,0.2)') : 'rgba(255,255,255,0.05)',
+                                        border: `1px solid ${isHov ? (i % 2 === 0 ? '#ef4444' : '#22c55e') : 'rgba(255,255,255,0.1)'}`,
+                                        boxShadow: isHov ? `0 0 18px ${i % 2 === 0 ? 'rgba(239,68,68,0.3)' : 'rgba(34,197,94,0.3)'}` : 'none',
                                     }}
                                 >
                                     <Icon
@@ -108,7 +108,7 @@ export default function Services() {
                                 <div className="flex-1">
                                     <h3
                                         className="font-rajdhani font-bold text-xl mb-2 transition-colors duration-300"
-                                        style={{ color: isHov ? '#ff6b2b' : '#f4f6f9' }}
+                                        style={{ color: isHov ? (i % 2 === 0 ? '#ef4444' : '#22c55e') : '#f4f6f9' }}
                                     >
                                         {service.title}
                                     </h3>
@@ -122,7 +122,7 @@ export default function Services() {
                                     onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
                                     aria-label={`Learn more about ${service.title}`}
                                     className="flex items-center gap-1.5 font-rajdhani font-semibold text-sm self-start transition-all duration-200"
-                                    style={{ color: '#ff6b2b' }}
+                                    style={{ color: i % 2 === 0 ? '#ef4444' : '#22c55e' }}
                                 >
                                     Learn More <ArrowRight size={14} />
                                 </motion.button>

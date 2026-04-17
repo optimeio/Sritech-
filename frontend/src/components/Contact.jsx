@@ -63,7 +63,7 @@ export default function Contact() {
     };
 
     const inputClass = (field) =>
-        `w-full bg-[rgba(30,58,95,0.2)] border rounded-lg px-4 py-3 font-source text-offwhite text-sm placeholder-silver/40 transition-all duration-300 outline-none focus:border-orange focus:bg-[rgba(30,58,95,0.35)] focus:shadow-orange-glow ${errors[field] ? 'border-red-500/70' : 'border-silver/20'
+        `w-full bg-[rgba(239,68,68,0.05)] border rounded-lg px-4 py-3 font-source text-offwhite text-sm placeholder-silver/40 transition-all duration-300 outline-none focus:border-red focus:bg-[rgba(239,68,68,0.12)] focus:shadow-red-glow ${errors[field] ? 'border-red-500/70' : 'border-silver/20'
         }`;
 
     return (
@@ -75,7 +75,7 @@ export default function Contact() {
             />
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(10,15,24,0.95) 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.95) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -87,12 +87,12 @@ export default function Contact() {
                     className="text-center mb-16"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-12 bg-orange" />
-                        <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">Get In Touch</span>
-                        <div className="h-px w-12 bg-orange" />
+                        <div className="h-px w-12 bg-red" />
+                        <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">Get In Touch</span>
+                        <div className="h-px w-12 bg-red" />
                     </div>
                     <h2 id="contact-title" className="section-title mb-4">
-                        Contact <span className="text-orange">Us</span>
+                        Contact <span className="text-red">Us</span>
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         Ready to start your project? Reach out to us for a consultation and quote
@@ -108,7 +108,7 @@ export default function Contact() {
                         className="glass-card p-8"
                     >
                         <h3 className="font-rajdhani font-bold text-2xl text-offwhite mb-6">
-                            Send a <span className="text-orange">Message</span>
+                            Send a <span className="text-red">Message</span>
                         </h3>
 
                         {status === 'success' ? (
@@ -127,7 +127,7 @@ export default function Contact() {
                                 <button
                                     onClick={() => setStatus('idle')}
                                     aria-label="Send another message"
-                                    className="text-orange font-rajdhani font-semibold text-sm hover:underline mt-2"
+                                    className="text-green font-rajdhani font-semibold text-sm hover:underline mt-2"
                                 >
                                     Send Another Message
                                 </button>
@@ -238,15 +238,19 @@ export default function Contact() {
                                 <motion.button
                                     type="submit"
                                     disabled={status === 'loading'}
-                                    whileHover={status !== 'loading' ? { scale: 1.03 } : {}}
-                                    whileTap={status !== 'loading' ? { scale: 0.97 } : {}}
+                                    whileHover={status !== 'loading' ? { scale: 1.02, boxShadow: '0 0 20px rgba(239, 68, 68, 0.4)' } : {}}
+                                    whileTap={status !== 'loading' ? { scale: 0.98 } : {}}
                                     aria-label="Send inquiry message"
-                                    className="ripple-effect w-full flex items-center justify-center gap-3 bg-orange text-white font-rajdhani font-bold py-3.5 rounded-lg text-base uppercase tracking-wider hover:shadow-orange-glow transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                                    className="ripple-effect w-full flex items-center justify-center gap-3 text-white font-rajdhani font-bold py-4 rounded-xl text-base uppercase tracking-widest transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed shadow-lg"
+                                    style={{
+                                        background: 'linear-gradient(135deg, #ef4444, #ff6b2b)',
+                                        boxShadow: '0 4px 15px rgba(239, 68, 68, 0.25)'
+                                    }}
                                 >
                                     {status === 'loading' ? (
                                         <><Loader2 size={18} className="animate-spin" /> Sending...</>
                                     ) : (
-                                        <><Send size={18} /> Send Message</>
+                                        <><Send size={18} /> Send Inquiry Message</>
                                     )}
                                 </motion.button>
                             </form>
@@ -266,7 +270,7 @@ export default function Contact() {
                                 icon: MapPin,
                                 title: 'Our Address',
                                 content: COMPANY.address,
-                                sub: 'Units: Athanoor & Vaiyappamalai, Namakkal',
+                                sub: 'Operational Head Office',
                             },
                             {
                                 icon: Mail,
@@ -284,10 +288,10 @@ export default function Contact() {
                             <motion.div
                                 key={title}
                                 whileHover={{ x: 6 }}
-                                className="glass-card p-6 flex items-start gap-4 transition-all duration-300 hover:border-orange/30"
+                                className="glass-card p-6 flex items-start gap-4 transition-all duration-300 hover:border-green/30"
                             >
-                                <div className="w-12 h-12 rounded-xl bg-orange/10 border border-orange/20 flex items-center justify-center flex-shrink-0">
-                                    <Icon size={20} color="#ff6b2b" />
+                                <div className="w-12 h-12 rounded-xl bg-green/10 border border-green/20 flex items-center justify-center flex-shrink-0">
+                                    <Icon size={20} color="#22c55e" />
                                 </div>
                                 <div>
                                     <div className="font-rajdhani font-bold text-offwhite mb-1">{title}</div>
@@ -304,15 +308,15 @@ export default function Contact() {
                         >
                             <div className="absolute inset-0 blueprint-bg opacity-50" style={{ backgroundSize: '20px 20px' }} aria-hidden="true" />
                             <div className="relative z-10 text-center">
-                                <MapPin size={32} color="rgba(255,107,43,0.6)" className="mx-auto mb-2" aria-hidden="true" />
-                                <p className="font-rajdhani font-semibold text-silver/60 text-sm">Fairlands, Salem</p>
-                                <p className="font-source text-silver/40 text-xs">Tamil Nadu – 636004</p>
+                                <MapPin size={32} color="rgba(34, 197, 94, 0.6)" className="mx-auto mb-2" aria-hidden="true" />
+                                <p className="font-rajdhani font-semibold text-silver/60 text-sm">Rasipuram, Namakkal</p>
+                                <p className="font-source text-silver/40 text-xs">Tamil Nadu – 637403</p>
                                 <a
-                                    href="https://maps.google.com/?q=OM+Shiva+Towers,Advaitha+Ashram+Road,Fairlands,Salem"
+                                    href="https://maps.google.com/?q=11/1,Gurusamipalayam,Rasipuram,Tamil+Nadu+637403"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     aria-label="View location on Google Maps"
-                                    className="mt-3 inline-block text-orange font-rajdhani font-semibold text-sm hover:underline"
+                                    className="mt-3 inline-block text-green font-rajdhani font-semibold text-sm hover:underline"
                                 >
                                     View on Google Maps →
                                 </a>

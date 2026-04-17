@@ -21,7 +21,7 @@ export default function OurCompanies() {
             />
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(10,15,24,0.95) 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.95) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -33,12 +33,12 @@ export default function OurCompanies() {
                     className="text-center mb-16"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-12 bg-orange" />
-                        <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">The Group</span>
-                        <div className="h-px w-12 bg-orange" />
+                        <div className="h-px w-12 bg-red" />
+                        <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">The Group</span>
+                        <div className="h-px w-12 bg-red" />
                     </div>
                     <h2 id="group-title" className="section-title mb-4">
-                        Our <span className="text-orange">Companies</span>
+                        Our <span className="text-red">Companies</span>
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         A diversified group spanning manufacturing, agro-trading, and education

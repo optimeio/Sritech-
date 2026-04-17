@@ -23,7 +23,7 @@ function GearDiagram() {
                 style={{
                     width: '200px', height: '200px',
                     borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(30,58,95,0.6) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(239, 68, 68, 0.12) 0%, transparent 70%)',
                 }}
             />
 
@@ -40,10 +40,10 @@ function GearDiagram() {
                         <feMerge><feMergeNode in="coloredBlur" /><feMergeNode in="SourceGraphic" /></feMerge>
                     </filter>
                 </defs>
-                <circle cx="70" cy="70" r="40" fill="none" stroke="#1e3a5f" strokeWidth="10" filter="url(#glow1)" />
-                <circle cx="70" cy="70" r="16" fill="#0f1117" stroke="#ff6b2b" strokeWidth="2.5" />
+                <circle cx="70" cy="70" r="40" fill="none" stroke="#333333" strokeWidth="10" filter="url(#glow1)" />
+                <circle cx="70" cy="70" r="16" fill="#0f1117" stroke="#ef4444" strokeWidth="2.5" />
                 {[...Array(8)].map((_, i) => (
-                    <rect key={i} x="64" y="10" width="12" height="20" fill="#1e3a5f" rx="3"
+                    <rect key={i} x="64" y="10" width="12" height="20" fill="#333333" rx="3"
                         transform={`rotate(${i * 45} 70 70)`} />
                 ))}
             </motion.svg>
@@ -56,10 +56,10 @@ function GearDiagram() {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
             >
-                <circle cx="45" cy="45" r="27" fill="none" stroke="#ff6b2b" strokeWidth="6" strokeOpacity="0.6" />
-                <circle cx="45" cy="45" r="10" fill="#0f1117" stroke="#ff6b2b" strokeWidth="2" />
+                <circle cx="45" cy="45" r="27" fill="none" stroke="#22c55e" strokeWidth="6" strokeOpacity="0.6" />
+                <circle cx="45" cy="45" r="10" fill="#0f1117" stroke="#22c55e" strokeWidth="2" />
                 {[...Array(6)].map((_, i) => (
-                    <rect key={i} x="40" y="7" width="10" height="16" fill="rgba(255,107,43,0.6)" rx="2"
+                    <rect key={i} x="40" y="7" width="10" height="16" fill="rgba(34, 197, 94, 0.6)" rx="2"
                         transform={`rotate(${i * 60} 45 45)`} />
                 ))}
             </motion.svg>
@@ -72,10 +72,10 @@ function GearDiagram() {
                 animate={{ rotate: -360 }}
                 transition={{ duration: 10, repeat: Infinity, ease: 'linear' }}
             >
-                <circle cx="40" cy="40" r="23" fill="none" stroke="#1e3a5f" strokeWidth="7" />
+                <circle cx="40" cy="40" r="23" fill="none" stroke="#444444" strokeWidth="7" />
                 <circle cx="40" cy="40" r="9" fill="#0f1117" stroke="#c0c8d8" strokeWidth="1.5" strokeOpacity="0.5" />
                 {[...Array(7)].map((_, i) => (
-                    <rect key={i} x="36" y="6" width="8" height="15" fill="#1e3a5f" rx="2"
+                    <rect key={i} x="36" y="6" width="8" height="15" fill="#444444" rx="2"
                         transform={`rotate(${i * 51.4} 40 40)`} />
                 ))}
             </motion.svg>
@@ -89,7 +89,7 @@ function GearDiagram() {
                 transition={{ duration: 14, repeat: Infinity, ease: 'linear' }}
             >
                 <circle cx="35" cy="35" r="20" fill="none" stroke="rgba(192,200,216,0.3)" strokeWidth="5" />
-                <circle cx="35" cy="35" r="8" fill="#0f1117" stroke="#ff6b2b" strokeWidth="1.5" strokeOpacity="0.5" />
+                <circle cx="35" cy="35" r="8" fill="#0f1117" stroke="#ef4444" strokeWidth="1.5" strokeOpacity="0.5" />
                 {[...Array(6)].map((_, i) => (
                     <rect key={i} x="31" y="6" width="8" height="13" fill="rgba(192,200,216,0.25)" rx="2"
                         transform={`rotate(${i * 60} 35 35)`} />
@@ -98,10 +98,10 @@ function GearDiagram() {
 
             {/* Animated dashed connector lines */}
             <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                <line x1="32%" y1="45%" x2="44%" y2="50%" stroke="rgba(255,107,43,0.3)" strokeWidth="1.5" strokeDasharray="5,5">
+                <line x1="32%" y1="45%" x2="44%" y2="50%" stroke="rgba(34, 197, 94, 0.3)" strokeWidth="1.5" strokeDasharray="5,5">
                     <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1s" repeatCount="indefinite" />
                 </line>
-                <line x1="56%" y1="50%" x2="72%" y2="46%" stroke="rgba(255,107,43,0.3)" strokeWidth="1.5" strokeDasharray="5,5">
+                <line x1="56%" y1="50%" x2="72%" y2="46%" stroke="rgba(239, 68, 68, 0.3)" strokeWidth="1.5" strokeDasharray="5,5">
                     <animate attributeName="stroke-dashoffset" from="0" to="-20" dur="1.2s" repeatCount="indefinite" />
                 </line>
             </svg>
@@ -121,7 +121,7 @@ export default function About() {
         <section id="about" className="relative py-20 md:py-28 overflow-hidden" aria-labelledby="about-title">
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, #0c1320 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.8) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -135,14 +135,14 @@ export default function About() {
                     className="text-center mb-14"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
-                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#ff6b2b' }}>
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
+                        <span className="font-rajdhani font-semibold text-sm uppercase tracking-widest" style={{ color: '#22c55e' }}>
                             Our Story
                         </span>
-                        <div className="h-px w-10" style={{ background: '#ff6b2b' }} />
+                        <div className="h-px w-10" style={{ background: '#ef4444' }} />
                     </div>
                     <h2 id="about-title" className="section-title mb-3">
-                        About <span style={{ color: '#ff6b2b' }}>Sri Tech Engineering</span>
+                        Premier <span style={{ color: '#ef4444' }}>Engineering & Manufacturing</span> in Namakkal
                     </h2>
                     <p className="section-subtitle max-w-xl mx-auto">
                         Pioneering precision manufacturing from the heart of Namakkal, Tamil Nadu
@@ -168,19 +168,16 @@ export default function About() {
                         transition={{ duration: 0.8, delay: 0.25 }}
                     >
                         <p className="font-source text-lg leading-relaxed mb-4" style={{ color: '#c0c8d8' }}>
-                            <span className="font-semibold" style={{ color: '#ff6b2b' }}>Sri Tech Engineering</span> is a precision manufacturing
+                            <span className="font-semibold" style={{ color: '#ef4444' }}>Sri Tech Engineering</span> is a precision manufacturing
                             company founded in 2020, specializing in Agro, Food &amp; Poultry Machineries, Material
                             Fabrication and Engineering Works.
                         </p>
                         <p className="font-source leading-relaxed mb-4" style={{ color: 'rgba(192,200,216,0.75)' }}>
-                            With manufacturing units in <strong style={{ color: '#f4f6f9' }}>Athanoor</strong> and{' '}
-                            <strong style={{ color: '#f4f6f9' }}>Vaiyappamalai</strong>, we serve landmark clients including
-                            Indian Railways, IOCL, SIDCO, and Smart City National Highways.
+                            Based in <strong style={{ color: '#f4f6f9' }}>Namakkal, Tamil Nadu</strong>, we operate two advanced manufacturing units in <strong style={{ color: '#f4f6f9' }}>Athanoor</strong> and{' '}
+                            <strong style={{ color: '#f4f6f9' }}>Vaiyappamalai</strong>. Our prestigious portfolio includes national-scale projects for Indian Railways, IOCL, SIDCO, and Smart City Highway infrastructures.
                         </p>
                         <p className="font-source leading-relaxed mb-7" style={{ color: 'rgba(192,200,216,0.75)' }}>
-                            Founded and led by <span className="font-medium" style={{ color: '#ff6b2b' }}>Sankarganesh R</span>{' '}
-                            (B.E Mech, M.Tech Energy Technology), our mission is delivering precision engineering
-                            solutions with innovative technology.
+                            Led by <span className="font-medium" style={{ color: '#ef4444' }}>Sankarganesh R</span> (CEO) and <span className="font-medium" style={{ color: '#ef4444' }}>Ganga</span> (MD), SM Group and Sri Tech Engineering focus on Delivering excellence through Innovation, Sustainability & Excellence. We bridge the gap between students and industry through technical skill development.
                         </p>
 
                         {/* Quick achievements */}
@@ -198,7 +195,7 @@ export default function About() {
                                     transition={{ delay: 0.4 + i * 0.1 }}
                                     className="flex items-start gap-3"
                                 >
-                                    <CheckCircle2 size={16} style={{ color: '#ff6b2b', marginTop: 3, flexShrink: 0 }} />
+                                    <CheckCircle2 size={16} style={{ color: '#22c55e', marginTop: 3, flexShrink: 0 }} />
                                     <span className="font-source text-sm" style={{ color: 'rgba(192,200,216,0.8)' }}>{item}</span>
                                 </motion.div>
                             ))}
@@ -206,17 +203,17 @@ export default function About() {
 
                         {/* Pillars */}
                         <div className="grid grid-cols-3 gap-3">
-                            {pillars.map(({ icon: Icon, title, desc }) => (
+                            {pillars.map(({ icon: Icon, title, desc }, i) => (
                                 <motion.div
                                     key={title}
-                                    whileHover={{ scale: 1.05, borderColor: 'rgba(255,107,43,0.5)' }}
+                                    whileHover={{ scale: 1.05, borderColor: i % 2 === 0 ? '#ef4444' : '#22c55e' }}
                                     className="glass-card p-4 flex flex-col items-center gap-2 text-center cursor-default transition-all duration-300"
                                 >
                                     <div
                                         className="w-10 h-10 rounded-lg flex items-center justify-center"
-                                        style={{ background: 'rgba(255,107,43,0.15)', border: '1px solid rgba(255,107,43,0.3)' }}
+                                        style={{ background: i % 2 === 0 ? 'rgba(239, 68, 68, 0.15)' : 'rgba(34, 197, 94, 0.15)', border: `1px solid ${i % 2 === 0 ? '#ef444444' : '#22c55e44'}` }}
                                     >
-                                        <Icon size={18} color="#ff6b2b" />
+                                        <Icon size={18} color={i % 2 === 0 ? '#ef4444' : '#22c55e'} />
                                     </div>
                                     <div className="font-rajdhani font-bold text-sm" style={{ color: '#f4f6f9' }}>{title}</div>
                                     <div className="font-source text-xs leading-tight hidden sm:block" style={{ color: 'rgba(192,200,216,0.6)' }}>{desc}</div>
@@ -235,7 +232,7 @@ export default function About() {
                         className="font-rajdhani font-bold text-center mb-10"
                         style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)', color: '#f4f6f9' }}
                     >
-                        Our <span style={{ color: '#ff6b2b' }}>Journey</span>
+                        Our <span style={{ color: '#ef4444' }}>Journey</span>
                     </motion.h3>
 
                     {/* Mobile: vertical list | Desktop: alternating */}
@@ -243,7 +240,7 @@ export default function About() {
                         {/* Desktop center line */}
                         <div
                             className="hidden md:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px"
-                            style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,107,43,0.35), transparent)' }}
+                            style={{ background: 'linear-gradient(to bottom, transparent, rgba(239, 68, 68, 0.35), transparent)' }}
                             aria-hidden="true"
                         />
 
@@ -257,7 +254,7 @@ export default function About() {
                             >
                                 <div className={`flex-1 ${i % 2 === 0 ? 'md:text-right' : 'md:text-left'}`}>
                                     <div className="glass-card p-4 md:p-5 inline-block w-full">
-                                        <div className="font-rajdhani font-bold text-xl mb-0.5" style={{ color: '#ff6b2b' }}>
+                                        <div className="font-rajdhani font-bold text-xl mb-0.5" style={{ color: i % 2 === 0 ? '#ef4444' : '#22c55e' }}>
                                             {m.year}
                                         </div>
                                         <div className="font-rajdhani font-bold text-lg" style={{ color: '#f4f6f9' }}>
@@ -271,7 +268,7 @@ export default function About() {
                                 {/* Center dot (desktop) */}
                                 <div
                                     className="hidden md:block w-4 h-4 rounded-full flex-shrink-0 z-10"
-                                    style={{ background: '#ff6b2b', boxShadow: '0 0 14px rgba(255,107,43,0.7)', border: '3px solid #0f1117' }}
+                                    style={{ background: i % 2 === 0 ? '#ef4444' : '#22c55e', boxShadow: `0 0 14px ${i % 2 === 0 ? 'rgba(239, 68, 68, 0.7)' : 'rgba(34, 197, 94, 0.7)'}`, border: '3px solid #0f1117' }}
                                     aria-hidden="true"
                                 />
                                 <div className="flex-1 hidden md:block" />

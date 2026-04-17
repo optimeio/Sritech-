@@ -28,7 +28,7 @@ export default function Industries() {
             />
             <div
                 className="absolute inset-0"
-                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(15,17,23,0.9) 50%, #0f1117 100%)' }}
+                style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.9) 50%, #0f1117 100%)' }}
                 aria-hidden="true"
             />
 
@@ -41,12 +41,12 @@ export default function Industries() {
                     className="text-center mb-16"
                 >
                     <div className="flex items-center justify-center gap-3 mb-4">
-                        <div className="h-px w-12 bg-orange" />
-                        <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">Sectors We Serve</span>
-                        <div className="h-px w-12 bg-orange" />
+                        <div className="h-px w-12 bg-red" />
+                        <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">Sectors We Serve</span>
+                        <div className="h-px w-12 bg-red" />
                     </div>
                     <h2 id="industries-title" className="section-title mb-4">
-                        Industries We <span className="text-orange">Serve</span>
+                        Industries We <span className="text-red">Serve</span>
                     </h2>
                     <p className="section-subtitle max-w-2xl mx-auto">
                         Delivering precision engineering solutions across diverse and demanding industrial sectors
@@ -81,7 +81,7 @@ export default function Industries() {
                                     <Icon size={28} color={industry.color} />
                                 </div>
 
-                                <span className="font-rajdhani font-bold text-sm text-offwhite group-hover:text-orange transition-colors duration-300 leading-tight">
+                                <span className="font-rajdhani font-bold text-sm text-offwhite group-hover:text-green transition-colors duration-300 leading-tight">
                                     {industry.name}
                                 </span>
 

@@ -9,6 +9,10 @@ import { readFileSync, mkdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import 'dotenv/config';
+import helmet from 'helmet';
+import morgan from 'morgan';
+import compression from 'compression';
+import rateLimit from 'express-rate-limit';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -16,26 +20,40 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// ─── Middleware (Security & Performance) ────────────────────────────────────
+app.use(helmet({
+    contentSecurityPolicy: false, // Setting false if you use multiple external images/scripts
+    crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+app.use(compression());
+app.use(morgan('combined')); // Production-grade logging
+
+// Rate limiting — prevents API abuse
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // Limit each IP to 100 requests per window
+    message: { error: 'Too many requests from this IP, please try again later.' }
+});
+app.use('/api/', limiter);
+
 // ─── Ensure uploads dir exists ───────────────────────────────────────────────
 const uploadsDir = join(__dirname, 'uploads');
 try { mkdirSync(uploadsDir, { recursive: true }); } catch {}
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 const ALLOWED_ORIGINS = [
-    // Production frontend (Hostinger) — update this after you get your Hostinger URL
-    process.env.FRONTEND_URL,
-    // Local development
+    process.env.FRONTEND_URL, 
+    'https://sritechengg.in',
+    'https://www.sritechengg.in',
     'http://localhost:5173',
     'http://localhost:4173',
-    'http://127.0.0.1:5173',
-].filter(Boolean); // remove undefined
+].filter(Boolean);
 
 app.use(cors({
     origin: (origin, callback) => {
-        // Allow requests with no origin (mobile apps, Postman, server-to-server)
-        if (!origin) return callback(null, true);
-        if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
-        callback(new Error(`CORS not allowed for origin: ${origin}`));
+        if (!origin || ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
+        // Allow any Hostinger preview or similar if needed, or keep strict
+        callback(new Error(`CORS blocked: ${origin}`));
     },
     credentials: true,
 }));
@@ -47,6 +65,8 @@ app.use('/api/uploads', express.static(uploadsDir));
 const productSchema = new mongoose.Schema({
     name: { type: String, required: true, trim: true },
     description: { type: String, required: true },
+    detailedDescription: { type: String, default: '' },
+    specs: [{ label: String, value: String }],
     category: { type: String, required: true, enum: ['Civil', 'Mechanical', 'Eco Products'] },
     image: { type: String, default: '' },
     isFeatured: { type: Boolean, default: false },
@@ -371,14 +391,22 @@ app.get('/api/products', async (_req, res) => {
 
 app.post('/api/products', adminAuth, upload.single('image'), async (req, res) => {
     try {
-        const { name, description, category, isFeatured, tag, stock, price } = req.body;
+        const { name, description, detailedDescription, specs, category, isFeatured, tag, stock, price } = req.body;
         if (!name?.trim() || !description?.trim() || !category) {
             return res.status(400).json({ error: 'Name, description and category are required' });
         }
+        
+        let parsedSpecs = [];
+        try {
+            if (specs) parsedSpecs = typeof specs === 'string' ? JSON.parse(specs) : specs;
+        } catch { parsedSpecs = []; }
+
         const imageUrl = req.file ? `/api/uploads/${req.file.filename}` : '';
         const product = await Product.create({
             name: name.trim(),
             description: description.trim(),
+            detailedDescription: detailedDescription || '',
+            specs: parsedSpecs,
             category,
             image: imageUrl,
             isFeatured: isFeatured === 'true' || isFeatured === true,
@@ -394,10 +422,16 @@ app.post('/api/products', adminAuth, upload.single('image'), async (req, res) =>
 
 app.put('/api/products/:id', adminAuth, upload.single('image'), async (req, res) => {
     try {
-        const { name, description, category, isFeatured, tag, stock, price } = req.body;
+        const { name, description, detailedDescription, specs, category, isFeatured, tag, stock, price } = req.body;
         const update = {};
         if (name) update.name = name.trim();
         if (description) update.description = description.trim();
+        if (detailedDescription !== undefined) update.detailedDescription = detailedDescription;
+        if (specs !== undefined) {
+            try {
+                update.specs = typeof specs === 'string' ? JSON.parse(specs) : specs;
+            } catch { /* ignore bad specs */ }
+        }
         if (category) update.category = category;
         if (isFeatured !== undefined) update.isFeatured = isFeatured === 'true' || isFeatured === true;
         if (tag !== undefined) update.tag = tag;

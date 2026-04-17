@@ -83,7 +83,7 @@ export default function Projects() {
                 {/* Background gradient */}
                 <div
                     className="absolute inset-0"
-                    style={{ background: 'linear-gradient(180deg, #0f1117 0%, #0d1520 50%, #0f1117 100%)' }}
+                    style={{ background: 'linear-gradient(180deg, #0f1117 0%, rgba(20,15,10,0.85) 50%, #0f1117 100%)' }}
                     aria-hidden="true"
                 />
 
@@ -104,14 +104,14 @@ export default function Projects() {
                         className="text-center mb-12"
                     >
                         <div className="flex items-center justify-center gap-3 mb-4">
-                            <div className="h-px w-12 bg-orange" />
-                            <span className="font-rajdhani text-orange uppercase tracking-widest text-sm font-semibold">
+                            <div className="h-px w-12 bg-red" />
+                            <span className="font-rajdhani text-green uppercase tracking-widest text-sm font-semibold">
                                 Our Portfolio
                             </span>
-                            <div className="h-px w-12 bg-orange" />
+                            <div className="h-px w-12 bg-red" />
                         </div>
                         <h2 id="projects-title" className="section-title mb-4">
-                            Project <span className="text-orange">Portfolio</span>
+                            Project <span className="text-red">Portfolio</span>
                         </h2>
                         <p className="section-subtitle max-w-2xl mx-auto">
                             Landmark projects delivered across Smart City, Railways, Oil &amp; Gas, PEB, Food Processing,
@@ -128,9 +128,9 @@ export default function Projects() {
                         role="tablist"
                         aria-label="Project category filters"
                     >
-                        {ALL_CATEGORIES.map((cat) => {
+                        {ALL_CATEGORIES.map((cat, i) => {
                             const isActive = activeCategory === cat;
-                            const color = CATEGORY_COLOR_MAP[cat] || '#ff6b2b';
+                            const color = CATEGORY_COLOR_MAP[cat] || (i % 2 === 0 ? '#ef4444' : '#22c55e');
                             return (
                                 <motion.button
                                     key={cat}
@@ -143,14 +143,14 @@ export default function Projects() {
                                     className="relative px-4 py-2 font-rajdhani font-semibold text-sm uppercase tracking-wider rounded-lg transition-all duration-300"
                                     style={{
                                         background: isActive
-                                            ? (cat === 'All' ? '#ff6b2b' : color)
-                                            : 'rgba(30,58,95,0.3)',
+                                            ? (cat === 'All' ? '#ef4444' : color)
+                                            : 'rgba(255, 255, 255, 0.05)',
                                         color: isActive ? '#fff' : '#c0c8d8',
                                         border: isActive
                                             ? 'none'
-                                            : '1px solid rgba(192,200,216,0.15)',
+                                            : '1px solid rgba(255, 255, 255, 0.15)',
                                         boxShadow: isActive
-                                            ? `0 0 16px ${cat === 'All' ? 'rgba(255,107,43,0.4)' : color + '55'}`
+                                            ? `0 0 16px ${cat === 'All' ? 'rgba(239,68,68,0.4)' : color + '55'}`
                                             : 'none',
                                     }}
                                 >
@@ -164,7 +164,7 @@ export default function Projects() {
                     <motion.div layout className="project-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
                         <AnimatePresence mode="popLayout">
                             {filtered.map((project, i) => {
-                                const color = project.color || '#ff6b2b';
+                                const color = project.color || (i % 2 === 0 ? '#ef4444' : '#22c55e');
                                 const imgCount = project.images.length;
                                 return (
                                     <motion.article
@@ -239,8 +239,8 @@ export default function Projects() {
                                                     position: 'absolute',
                                                     top: 10, right: 10,
                                                     background: 'rgba(0,0,0,0.72)',
-                                                    color: '#ff6b2b',
-                                                    border: '1px solid rgba(255,107,43,0.45)',
+                                                    color: '#22c55e',
+                                                    border: '1px solid rgba(34,197,94,0.45)',
                                                     borderRadius: 6,
                                                     padding: '3px 9px',
                                                     fontSize: 11,
@@ -287,12 +287,12 @@ export default function Projects() {
                                             </div>
 
                                             {/* Title */}
-                                            <h3 className="font-rajdhani font-bold text-base text-offwhite group-hover:text-orange transition-colors duration-300 leading-snug">
+                                            <h3 className="font-rajdhani font-bold text-base text-offwhite group-hover:text-red transition-colors duration-300 leading-snug">
                                                 {project.title}
                                             </h3>
 
                                             {/* Client */}
-                                            <p className="font-source text-xs font-semibold uppercase tracking-wider" style={{ color: '#ff6b2b' }}>
+                                            <p className="font-source text-xs font-semibold uppercase tracking-wider" style={{ color: '#22c55e' }}>
                                                 {project.client}
                                             </p>
 

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
  
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-import { LogOut, Package, Image, Tag, Plus, Edit2, Trash2, LayoutTemplate, X, Save, Eye, EyeOff, ShieldAlert, Star, ShoppingCart, Users, CheckCircle, Download, Filter, Calendar } from 'lucide-react';
+import { LogOut, Package, Image, Tag, Plus, Edit2, Trash2, LayoutTemplate, X, Save, Eye, EyeOff, ShieldAlert, Star, ShoppingCart, Users, CheckCircle, Download, Filter, Calendar, Warehouse, BarChart2, RefreshCw, AlertTriangle } from 'lucide-react';
 import { apiFetch, getImageUrl } from '../../utils/api';
 import SEO from '../../components/SEO';
 
@@ -30,6 +30,10 @@ export default function AdminDashboard() {
         isFeatured: false, tag: '', image: null
     });
     const [imagePreview, setImagePreview] = useState(null);
+
+    // Inventory inline edit state
+    const [editingStockId, setEditingStockId] = useState(null);
+    const [editStockVal, setEditStockVal] = useState('');
 
     // Banner Form
     const [bannerForm, setBannerForm] = useState({
@@ -139,15 +143,23 @@ export default function AdminDashboard() {
         if (prod) {
             setEditingProduct(prod);
             setFormData({
-                name: prod.name, description: prod.description, category: prod.category,
-                price: prod.price || '', stock: prod.stock || 0,
-                isFeatured: prod.isFeatured, tag: prod.tag || '', image: null
+                name: prod.name,
+                description: prod.description,
+                detailedDescription: prod.detailedDescription || '',
+                specs: prod.specs || [],
+                category: prod.category,
+                price: prod.price || '',
+                stock: prod.stock || 0,
+                isFeatured: prod.isFeatured,
+                tag: prod.tag || '',
+                image: null
             });
             setImagePreview(getImageUrl(prod.image));
         } else {
             setEditingProduct(null);
             setFormData({
-                name: '', description: '', category: 'Civil', price: '', stock: '100',
+                name: '', description: '', detailedDescription: '', specs: [],
+                category: 'Civil', price: '', stock: '100',
                 isFeatured: false, tag: '', image: null
             });
             setImagePreview(null);
@@ -162,6 +174,8 @@ export default function AdminDashboard() {
             const formDataObj = new FormData();
             formDataObj.append('name', formData.name);
             formDataObj.append('description', formData.description);
+            formDataObj.append('detailedDescription', formData.detailedDescription);
+            formDataObj.append('specs', JSON.stringify(formData.specs));
             formDataObj.append('category', formData.category);
             formDataObj.append('price', formData.price);
             formDataObj.append('stock', formData.stock);
@@ -192,6 +206,26 @@ export default function AdminDashboard() {
             await fetchData();
         } catch {
             alert('Error deleting product');
+        }
+    };
+
+    // --- Inventory: quick stock update ---
+    const handleStockUpdate = async (id) => {
+        const val = parseInt(editStockVal, 10);
+        if (isNaN(val) || val < 0) { alert('Please enter a valid stock quantity (0 or more).'); return; }
+        try {
+            setSaving(true);
+            // Build a minimal FormData carrying only stock
+            const fd = new FormData();
+            fd.append('stock', val);
+            await apiFetch(`/products/${id}`, { method: 'PUT', body: fd });
+            setEditingStockId(null);
+            setEditStockVal('');
+            await fetchData();
+        } catch (err) {
+            alert('Error updating stock: ' + err.message);
+        } finally {
+            setSaving(false);
         }
     };
 
@@ -296,6 +330,14 @@ export default function AdminDashboard() {
                         }`}
                     >
                         <Users size={20} /> Customers
+                    </button>
+                    <button
+                        onClick={() => setActiveTab('inventory')}
+                        className={`flex items-center gap-3 p-3 rounded-xl font-semibold transition-all ${
+                            activeTab === 'inventory' ? 'bg-orange/10 text-orange border border-orange/30' : 'text-silver/70 hover:bg-silver/5 border border-transparent'
+                        }`}
+                    >
+                        <Warehouse size={20} /> Inventory
                     </button>
                 </aside>
 
@@ -622,6 +664,195 @@ export default function AdminDashboard() {
                         </motion.div>
                         );
                     })()}
+                    {activeTab === 'inventory' && (() => {
+                        const totalProducts = products.length;
+                        const outOfStock   = products.filter(p => p.stock === 0).length;
+                        const lowStock     = products.filter(p => p.stock > 0 && p.stock <= 10).length;
+                        const maxStock     = Math.max(...products.map(p => p.stock || 0), 1);
+
+                        return (
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+                                {/* Header */}
+                                <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+                                    <div>
+                                        <h2 className="font-rajdhani text-3xl font-bold">Inventory Management</h2>
+                                        <p className="text-silver/60 mt-1">View, update, and manage stock levels for all products.</p>
+                                    </div>
+                                    <button
+                                        onClick={() => { openProductModal(); setActiveTab('products'); }}
+                                        className="bg-orange hover:bg-orange/90 text-white font-rajdhani font-bold px-5 py-2.5 rounded-lg shadow-orange-glow flex items-center gap-2 transition-transform active:scale-95"
+                                    >
+                                        <Plus size={20} /> Add Product
+                                    </button>
+                                </div>
+
+                                {/* Summary Cards */}
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                                    <div className="bg-[#111825] border border-silver/10 rounded-2xl p-5 flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center flex-shrink-0">
+                                            <BarChart2 size={22} className="text-blue-400" />
+                                        </div>
+                                        <div>
+                                            <div className="text-2xl font-rajdhani font-bold text-white">{totalProducts}</div>
+                                            <div className="text-xs text-silver/50 font-semibold uppercase tracking-widest">Total Products</div>
+                                        </div>
+                                    </div>
+                                    <div className="bg-[#111825] border border-yellow-500/20 rounded-2xl p-5 flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center flex-shrink-0">
+                                            <AlertTriangle size={22} className="text-yellow-400" />
+                                        </div>
+                                        <div>
+                                            <div className="text-2xl font-rajdhani font-bold text-yellow-400">{lowStock}</div>
+                                            <div className="text-xs text-silver/50 font-semibold uppercase tracking-widest">Low Stock (≤10)</div>
+                                        </div>
+                                    </div>
+                                    <div className="bg-[#111825] border border-red-500/20 rounded-2xl p-5 flex items-center gap-4">
+                                        <div className="w-12 h-12 rounded-xl bg-red-500/10 border border-red-500/20 flex items-center justify-center flex-shrink-0">
+                                            <Package size={22} className="text-red-400" />
+                                        </div>
+                                        <div>
+                                            <div className="text-2xl font-rajdhani font-bold text-red-400">{outOfStock}</div>
+                                            <div className="text-xs text-silver/50 font-semibold uppercase tracking-widest">Out of Stock</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Inventory Table */}
+                                <div className="bg-[#111825] border border-silver/10 rounded-2xl overflow-hidden overflow-x-auto">
+                                    <table className="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr className="bg-silver/5 text-silver/60 font-semibold text-xs tracking-widest uppercase">
+                                                <th className="p-4 rounded-tl-2xl">Product</th>
+                                                <th className="p-4">Category</th>
+                                                <th className="p-4">Stock Level</th>
+                                                <th className="p-4">Status</th>
+                                                <th className="p-4 rounded-tr-2xl text-right">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody className="divide-y divide-silver/10">
+                                            {products.length === 0 && (
+                                                <tr><td colSpan="5" className="p-8 text-center text-silver/50">No products found.</td></tr>
+                                            )}
+                                            {products.map(p => {
+                                                const stockPct = Math.min(100, Math.round((p.stock / maxStock) * 100));
+                                                const isLow    = p.stock > 0 && p.stock <= 10;
+                                                const isOut    = p.stock === 0;
+                                                const barColor = isOut ? '#ef4444' : isLow ? '#f59e0b' : '#22c55e';
+                                                const isEditing = editingStockId === p._id;
+
+                                                return (
+                                                    <tr key={p._id} className="hover:bg-silver/5 transition-colors group">
+                                                        {/* Product */}
+                                                        <td className="p-4">
+                                                            <div className="flex items-center gap-3">
+                                                                <div className="w-10 h-10 rounded-lg overflow-hidden bg-charcoal border border-silver/10 flex-shrink-0">
+                                                                    {p.image
+                                                                        ? <img src={getImageUrl(p.image)} alt={p.name} className="w-full h-full object-cover" />
+                                                                        : <Package className="w-full h-full p-2 text-silver/20" />}
+                                                                </div>
+                                                                <div>
+                                                                    <div className="font-semibold text-offwhite truncate max-w-[180px]">{p.name}</div>
+                                                                    <div className="text-xs text-orange font-bold">₹{p.price || 0}</div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
+                                                        {/* Category */}
+                                                        <td className="p-4 text-sm text-silver/70 font-semibold">{p.category}</td>
+
+                                                        {/* Stock Level with Bar */}
+                                                        <td className="p-4" style={{ minWidth: 200 }}>
+                                                            {isEditing ? (
+                                                                <div className="flex items-center gap-2">
+                                                                    <input
+                                                                        type="number" min="0"
+                                                                        value={editStockVal}
+                                                                        onChange={e => setEditStockVal(e.target.value)}
+                                                                        onKeyDown={e => { if (e.key === 'Enter') handleStockUpdate(p._id); if (e.key === 'Escape') { setEditingStockId(null); setEditStockVal(''); } }}
+                                                                        className="w-24 bg-charcoal border border-orange rounded-lg px-3 py-1.5 text-offwhite text-sm font-bold focus:ring-1 focus:ring-orange outline-none"
+                                                                        autoFocus
+                                                                    />
+                                                                    <button
+                                                                        onClick={() => handleStockUpdate(p._id)}
+                                                                        disabled={saving}
+                                                                        className="p-1.5 bg-green-500/20 hover:bg-green-500/40 text-green-400 rounded-lg transition-colors"
+                                                                        title="Save stock"
+                                                                    >
+                                                                        {saving ? <div className="w-4 h-4 border-2 border-green-400/40 border-t-green-400 rounded-full animate-spin" /> : <Save size={14} />}
+                                                                    </button>
+                                                                    <button
+                                                                        onClick={() => { setEditingStockId(null); setEditStockVal(''); }}
+                                                                        className="p-1.5 bg-silver/10 hover:bg-silver/20 text-silver/60 rounded-lg transition-colors"
+                                                                        title="Cancel"
+                                                                    >
+                                                                        <X size={14} />
+                                                                    </button>
+                                                                </div>
+                                                            ) : (
+                                                                <div>
+                                                                    <div className="flex items-center justify-between mb-1">
+                                                                        <span className="text-sm font-bold" style={{ color: barColor }}>
+                                                                            {p.stock} units
+                                                                        </span>
+                                                                        <span className="text-xs text-silver/40">{stockPct}%</span>
+                                                                    </div>
+                                                                    <div className="h-2 bg-charcoal rounded-full overflow-hidden">
+                                                                        <div
+                                                                            className="h-full rounded-full transition-all duration-700"
+                                                                            style={{ width: `${stockPct}%`, background: barColor, boxShadow: `0 0 8px ${barColor}80` }}
+                                                                        />
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </td>
+
+                                                        {/* Status badge */}
+                                                        <td className="p-4">
+                                                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest border ${
+                                                                isOut  ? 'text-red-400 bg-red-500/10 border-red-500/30' :
+                                                                isLow  ? 'text-yellow-400 bg-yellow-500/10 border-yellow-500/30' :
+                                                                          'text-green-400 bg-green-500/10 border-green-500/30'
+                                                            }`}>
+                                                                {isOut ? 'Out of Stock' : isLow ? 'Low Stock' : 'In Stock'}
+                                                            </span>
+                                                        </td>
+
+                                                        {/* Actions */}
+                                                        <td className="p-4 text-right">
+                                                            <div className="flex items-center justify-end gap-2 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity">
+                                                                <button
+                                                                    onClick={() => { setEditingStockId(p._id); setEditStockVal(String(p.stock)); }}
+                                                                    className="p-2 text-orange hover:bg-orange/10 rounded-lg transition-colors"
+                                                                    title="Update Stock"
+                                                                >
+                                                                    <RefreshCw size={16} />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => openProductModal(p)}
+                                                                    className="p-2 text-blue-400 hover:bg-blue-400/10 rounded-lg transition-colors"
+                                                                    title="Edit Product"
+                                                                >
+                                                                    <Edit2 size={16} />
+                                                                </button>
+                                                                <button
+                                                                    onClick={() => handleDeleteProduct(p._id)}
+                                                                    className="p-2 text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
+                                                                    title="Delete Product"
+                                                                >
+                                                                    <Trash2 size={16} />
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </motion.div>
+                        );
+                    })()}
+
                 </main>
             </div>
 
@@ -674,6 +905,41 @@ export default function AdminDashboard() {
                                         <div>
                                             <label className="block text-xs font-semibold text-silver/70 uppercase tracking-widest mb-1.5 ml-1">Stock Quantity</label>
                                             <input type="number" min="0" value={formData.stock} onChange={e => setFormData({...formData, stock: e.target.value})} className="w-full bg-charcoal/50 border border-silver/10 rounded-xl py-3 px-4 focus:border-orange focus:ring-1 outline-none" />
+                                        </div>
+
+                                        <div className="md:col-span-2">
+                                            <label className="block text-xs font-semibold text-silver/70 uppercase tracking-widest mb-1.5 ml-1">Detailed Description (for Details Page)</label>
+                                            <textarea rows="5" value={formData.detailedDescription} onChange={e => setFormData({...formData, detailedDescription: e.target.value})} className="w-full bg-charcoal/50 border border-silver/10 rounded-xl py-3 px-4 focus:border-orange focus:ring-1 outline-none font-source" placeholder="Full product details, advantages, use-cases..." />
+                                        </div>
+
+                                        <div className="md:col-span-2">
+                                            <div className="flex items-center justify-between mb-3 ml-1">
+                                                <label className="text-xs font-semibold text-silver/70 uppercase tracking-widest">Product Specifications</label>
+                                                <button type="button" onClick={() => setFormData({...formData, specs: [...formData.specs, { label: '', value: '' }]})} className="text-xs font-bold text-orange hover:text-white transition-colors flex items-center gap-1">
+                                                    <Plus size={14} /> Add Spec
+                                                </button>
+                                            </div>
+                                            <div className="space-y-3">
+                                                {formData.specs.map((spec, idx) => (
+                                                    <div key={idx} className="flex gap-2">
+                                                        <input type="text" placeholder="Label (e.g. Weight)" value={spec.label} onChange={e => {
+                                                            const newSpecs = [...formData.specs];
+                                                            newSpecs[idx].label = e.target.value;
+                                                            setFormData({...formData, specs: newSpecs});
+                                                        }} className="flex-1 bg-charcoal/50 border border-silver/10 rounded-xl py-2 px-3 focus:border-orange outline-none text-sm" />
+                                                        <input type="text" placeholder="Value (e.g. 50kg)" value={spec.value} onChange={e => {
+                                                            const newSpecs = [...formData.specs];
+                                                            newSpecs[idx].value = e.target.value;
+                                                            setFormData({...formData, specs: newSpecs});
+                                                        }} className="flex-1 bg-charcoal/50 border border-silver/10 rounded-xl py-2 px-3 focus:border-orange outline-none text-sm" />
+                                                        <button type="button" onClick={() => {
+                                                            const newSpecs = formData.specs.filter((_, i) => i !== idx);
+                                                            setFormData({...formData, specs: newSpecs});
+                                                        }} className="p-2 text-red-400 hover:bg-red-400/10 rounded-lg"><X size={16} /></button>
+                                                    </div>
+                                                ))}
+                                                {formData.specs.length === 0 && <p className="text-xs text-silver/40 italic ml-1">No specifications added. Click "Add Spec" to add fields like Weight, Material, etc.</p>}
+                                            </div>
                                         </div>
 
                                         <div className="md:col-span-2">
